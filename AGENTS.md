@@ -7,3 +7,7 @@ Before finishing every UI change, check for horizontal and vertical scrollbars a
 Use the supported browser QA path from the Sites skill. When browser tooling is unavailable, run the available logic checks, explicitly report that browser layout verification was unavailable, and do not claim the viewport checks passed.
 
 Cover the Text tab, polygon lasso, selection resize/rotation handles, grouping controls, sensitivity live preview, delayed tooltips and the video page when checking layouts. New controls must remain reachable through pagination on short windows.
+
+For every delivered application version, provide a short numbered user acceptance checklist and a short video with Russian voiceover explaining what to verify. Send the links/files through the email channel when authorized in the conversation. Keep recipient contact information out of the public repository. The right-hand list shows applied layers only; live sensitivity previews stay on the canvas until applied.
+
+Keep automatic-splitting settings in one module above its Apply button. Re-splitting a selected layer must preserve all other layers and its complete affine transform. Selected-object frames are bright cyan with small handles: proportional corners, independent side stretching and rotation. Cropping-selection points must remain visually small with a usable invisible hit area.
