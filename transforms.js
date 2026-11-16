@@ -1,0 +1,6 @@
+'use strict';
+function layerLinear(l){const angle=l.angle*Math.PI/180,c=Math.cos(angle),s=Math.sin(angle),x=l.scale*(l.stretchX??1),y=l.scale*(l.stretchY??1),k=l.skew??0;return{a:c*x,b:s*x,c:(c*k-s)*y,d:(s*k+c)*y}}
+function linearPoint(m,x,y){return{x:m.a*x+m.c*y,y:m.b*x+m.d*y}}
+function inverseLinearPoint(m,x,y){const det=m.a*m.d-m.b*m.c;return{x:(m.d*x-m.c*y)/det,y:(-m.b*x+m.a*y)/det}}
+function nestedTransform(child,parent){const a=layerLinear(parent),b=layerLinear(child),m={a:a.a*b.a+a.c*b.b,b:a.b*b.a+a.d*b.b,c:a.a*b.c+a.c*b.d,d:a.b*b.c+a.d*b.d},sx=Math.hypot(m.a,m.b),sy=(m.a*m.d-m.b*m.c)/sx,scale=parent.scale*child.scale,p=linearPoint(a,child.x,child.y);return{x:parent.x+p.x,y:parent.y+p.y,scale,angle:Math.atan2(m.b,m.a)*180/Math.PI,stretchX:sx/scale,stretchY:sy/scale,skew:(m.a*m.c+m.b*m.d)/(sx*sy)}}
+function drawLayerFrame(c,l,ratio){const m=layerLinear(l),w=l.img.width/2,h=l.img.height/2,points=[[-w,-h],[w,-h],[w,h],[-w,h]].map(p=>linearPoint(m,...p));c.save();c.beginPath();points.forEach((p,i)=>i?c.lineTo(l.x+p.x,l.y+p.y):c.moveTo(l.x+p.x,l.y+p.y));c.closePath();c.strokeStyle='white';c.lineWidth=3.5*ratio;c.stroke();c.strokeStyle='#009dff';c.lineWidth=1.5*ratio;c.setLineDash([6*ratio,4*ratio]);c.stroke();c.restore()}

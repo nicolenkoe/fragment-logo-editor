@@ -7,7 +7,7 @@ $('toggleTools').onclick=()=>drawer('tools');$('toggleInspector').onclick=()=>dr
 $('stage').addEventListener('pointerdown',()=>{if(document.body.dataset.drawer)drawer(document.body.dataset.drawer)});
 $('prevLayers').onclick=()=>{layerPageIndex--;refreshLayout()};$('nextLayers').onclick=()=>{layerPageIndex++;refreshLayout()};
 const fitPanels=[];
-for(const id of ['editPanel','textPanel','projectPanel','geometryPanel','colorPanel','actionsPanel']){
+for(const id of ['editPanel','textPanel','projectPanel','geometryPanel','colorPanel','actionsPanel','splitSettingsPanel']){
  const panel=$(id);panel.dataset.fitPanel='';
  // Keep a field's label with its control when a short window needs pages.
  for(const label of [...panel.children].filter(e=>e.tagName==='LABEL')){const next=label.nextElementSibling;if(next){const field=document.createElement('div');field.className='field';panel.insertBefore(field,label);field.append(label,next)}}
@@ -25,13 +25,13 @@ function pageControls(state){const {panel,content,pager,prev,next,text}=state;if
  }else pages=[items];
  state.index=Math.max(0,Math.min(state.index,pages.length-1));items.forEach(e=>e.hidden=!pages[state.index].includes(e));pager.hidden=pages.length===1;text.textContent=(state.index+1)+' / '+pages.length;prev.disabled=state.index===0;next.disabled=state.index===pages.length-1;
 }
-function fitCanvas(){const stage=$('stage'),style=getComputedStyle(stage);const width=Math.max(1,stage.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)),height=Math.max(1,stage.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom));const fit=Math.min(width/canvas.width,height/canvas.height);canvas.style.width=(canvas.width*fit)+'px';canvas.style.height=(canvas.height*fit)+'px';positionRotationHandle();if(typeof refreshSelectionHandles==='function')refreshSelectionHandles()}
+function fitCanvas(){const stage=$('stage'),style=getComputedStyle(stage);const width=Math.max(1,stage.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)),height=Math.max(1,stage.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom));const fit=Math.min(width/canvas.width,height/canvas.height);canvas.style.width=(canvas.width*fit)+'px';canvas.style.height=(canvas.height*fit)+'px';positionRotationHandle();if(typeof refreshSelectionHandles==='function')refreshSelectionHandles();if(typeof refreshObjectHandles==='function')refreshObjectHandles()}
 function positionRotationHandle(){const handle=$('rotateHandle'),l=current();if(!l||l.visible===false||mode!=='move'||(typeof chosen==='function'&&chosen().length>1)){handle.hidden=true;return}
- const cr=canvas.getBoundingClientRect(),sr=$('stage').getBoundingClientRect(),ratio=cr.width/canvas.width,angle=l.angle*Math.PI/180,distance=l.img.height*l.scale/2+30/ratio;
- const x=cr.left-sr.left+(l.x+Math.sin(angle)*distance)*ratio,y=cr.top-sr.top+(l.y-Math.cos(angle)*distance)*ratio;
- handle.hidden=false;handle.style.left=(Math.min(Math.max(19,x),sr.width-19)-17)+'px';handle.style.top=(Math.min(Math.max(19,y),sr.height-19)-17)+'px';
+ const cr=canvas.getBoundingClientRect(),sr=$('stage').getBoundingClientRect(),ratio=cr.width/canvas.width,m=layerLinear(l),top=linearPoint(m,0,-l.img.height/2),normal=Math.hypot(m.a,m.b);
+ const x=cr.left-sr.left+(l.x+top.x)*ratio+30*m.b/normal,y=cr.top-sr.top+(l.y+top.y)*ratio-30*m.a/normal;
+ handle.hidden=false;handle.style.left=(Math.min(Math.max(16,x),sr.width-16)-14)+'px';handle.style.top=(Math.min(Math.max(16,y),sr.height-16)-14)+'px';
 }
-function refreshLayout(){for(const panel of fitPanels)pageControls(panel);
+function refreshLayout(){$('autoSplitModule').style.maxHeight=Math.max(170,$('editPanel').clientHeight-64)+'px';for(const panel of fitPanels)pageControls(panel);
  if($('layersPanel').getClientRects().length){const rows=[...$('layers').children],height=$('layers').clientHeight,rowHeight=window.innerHeight<=560?35:41,pageSize=Math.max(1,Math.floor(height/rowHeight)),pages=Math.max(1,Math.ceil(rows.length/pageSize));layerPageIndex=Math.max(0,Math.min(layerPageIndex,pages-1));rows.forEach((row,i)=>row.hidden=Math.floor(i/pageSize)!==layerPageIndex);$('layerPage').textContent=(layerPageIndex+1)+' / '+pages;$('prevLayers').disabled=layerPageIndex===0;$('nextLayers').disabled=layerPageIndex===pages-1;}
  fitCanvas();
 }
@@ -51,4 +51,4 @@ window.checkEditorLayout=function(){const root=document.documentElement,issues=[
  return{ok:issues.length===0,viewport:[window.innerWidth,window.innerHeight],issues};
 };
 const layoutObserver=new ResizeObserver(scheduleLayout);for(const el of [$('stage'),document.body,...fitPanels.map(s=>s.panel),$('layers')])layoutObserver.observe(el);
-$('splitSettings').addEventListener('toggle',scheduleLayout);window.addEventListener('resize',scheduleLayout);document.fonts?.ready.then(scheduleLayout);refreshLayout();
+window.addEventListener('resize',scheduleLayout);document.fonts?.ready.then(scheduleLayout);refreshLayout();
