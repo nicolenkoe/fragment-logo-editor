@@ -3,8 +3,8 @@
 Браузерный редактор изображений со слоями, автоматическим разделением объектов и Android-приложением, которое работает без сети.
 
 - [Открыть редактор](https://logo-fragment-studio.devotedsesame.chatgpt.site/)
-- [Android APK](https://github.com/nicolenkoe/fragment-logo-editor/releases/latest/download/fragment-editor.apk)
-- [Архив исходников](https://github.com/nicolenkoe/fragment-logo-editor/releases/latest/download/fragment-source.zip)
+- [Android APK](https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/fragment-editor.apk)
+- [Архив исходников](https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/fragment-source.zip)
 - [Короткая видеоинструкция](https://logo-fragment-studio.devotedsesame.chatgpt.site/videos.html?video=quick)
 - [Полный видеообзор](https://logo-fragment-studio.devotedsesame.chatgpt.site/videos.html?video=overview)
 
