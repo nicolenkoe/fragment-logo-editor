@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "releases": [
+    {
+      "version": "1.3.0",
+      "versionCode": 8,
+      "channel": "testing",
+      "date": "2026-11-17",
+      "notes": [
+        "Обновления с GitHub, история версий и каналы выпуска.",
+        "Предложение обновить или отложить; ручная проверка из редактора.",
+        "Тестовые обновления можно включить отдельно."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/fragment-source.zip"
+    },
+    {
+      "version": "1.2.4",
+      "versionCode": 7,
+      "channel": "testing",
+      "date": "2026-11-17",
+      "notes": [
+        "Масштаб колёсиком и двумя пальцами.",
+        "Контекстное меню, перетаскивание слоёв и общая рамка группы.",
+        "Повторное разделение без переключателя источника."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/440311d39ef2a139b569ab67c6c85a8ea9a4f009/downloads/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/440311d39ef2a139b569ab67c6c85a8ea9a4f009/downloads/fragment-source.zip"
+    },
+    {
+      "version": "1.2.2",
+      "versionCode": 5,
+      "channel": "testing",
+      "date": "2026-11-17",
+      "notes": [
+        "Автоматический выбор объекта для повторного разделения.",
+        "Общая рамка нескольких выбранных элементов."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/53705c7368df22d404920bc887270bf13e912f4c/downloads/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/53705c7368df22d404920bc887270bf13e912f4c/downloads/fragment-source.zip"
+    },
+    {
+      "version": "1.2.1",
+      "versionCode": 4,
+      "channel": "testing",
+      "date": "2026-11-17",
+      "notes": [
+        "Общие точки растяжения и поворота группы.",
+        "Сохранение преобразований при разборе группы."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/1a889d8993806a437e256118815173d78fb4f77c/downloads/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/1a889d8993806a437e256118815173d78fb4f77c/downloads/fragment-source.zip"
+    },
+    {
+      "version": "1.2",
+      "versionCode": 3,
+      "channel": "stable",
+      "date": "2026-11-17",
+      "notes": [
+        "Импорт картинок отдельными объектами и устойчивое выделение.",
+        "Стартовая страница, APK и видеоинструкции.",
+        "Интерфейс проверен в браузере на шести размерах окна."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/832eb2971dea731ea2c4e74ad6285486c17c25ed/downloads/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/832eb2971dea731ea2c4e74ad6285486c17c25ed/downloads/fragment-source.zip"
+    }
+  ]
+}
