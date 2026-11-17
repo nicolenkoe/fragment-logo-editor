@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "packageName": "com.nicolenkoe.hub",
+  "releases": [
+    {
+      "versionCode": 6,
+      "versionName": "1.5",
+      "channel": "testing",
+      "releasedAt": "2026-11-17",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.5.apk",
+      "sha256": "b7cff8bb584a021569c8ffd9206064a8720840bfa7954e4b4f50ebf868b42de1",
+      "sizeBytes": 684786,
+      "notes": "Проверка обновлений с GitHub при запуске, окно «Обновить / Позже», загрузка APK с проверкой SHA-256 и подписи. Выбор тестового канала. Первый выпуск системы обновлений; требуется проверка установки на телефоне. Кнопка «Ветка Codex» для проекта «Мои проекты».",
+      "withdrawn": false
+    },
+    {
+      "versionCode": 5,
+      "versionName": "1.4",
+      "channel": "testing",
+      "releasedAt": "2026-11-17",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.4.apk",
+      "sha256": "b9ebde26bcc5bf8f78f6e2f564aceb044c2bada34c20eb2474b6cf0ed6a80f87",
+      "sizeBytes": 668402,
+      "notes": "Компактные карточки сайтов с оригинальными логотипами, открытие и копирование в одной строке, поиск под лупой. Эта версия ещё не умеет проверять обновления приложения.",
+      "withdrawn": false
+    }
+  ],
+  "projectThreads": {
+    "my-projects": "https://chatgpt.com/local/6afbc15c-b5ac-8191-b689-765abe957078"
+  }
+}
