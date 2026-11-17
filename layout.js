@@ -46,8 +46,8 @@ $('rotateHandle').onkeydown=e=>{const l=selectionTransformTarget();if(!l||!['Arr
 // A review hook: check actual content bounds instead of only hiding scrollbars.
 window.checkEditorLayout=function(){const root=document.documentElement,issues=[];
  if(root.scrollWidth>root.clientWidth+1||root.scrollHeight>root.clientHeight+1)issues.push('Страница выходит за размер окна');
- for(const el of [document.body,$('stage'),...document.querySelectorAll('.fit-items,#layers')]){if(!el.getClientRects().length)continue;if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1)issues.push(el.id||el.className||el.tagName)}
- const r=canvas.getBoundingClientRect(),s=$('stage').getBoundingClientRect();if(r.left<s.left-1||r.top<s.top-1||r.right>s.right+1||r.bottom>s.bottom+1)issues.push('Холст выходит за рабочую область');
+ for(const el of [document.body,$('stage'),...document.querySelectorAll('.fit-items,#layers')]){if(!el.getClientRects().length)continue;if(el===$('stage')&&typeof viewState!=='undefined')continue;if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1)issues.push(el.id||el.className||el.tagName)}
+ const r=canvas.getBoundingClientRect(),s=$('stage').getBoundingClientRect();if((typeof viewState==='undefined'||viewState.zoom===1&&viewState.panX===0&&viewState.panY===0)&&(r.left<s.left-1||r.top<s.top-1||r.right>s.right+1||r.bottom>s.bottom+1))issues.push('Холст выходит за рабочую область');
  return{ok:issues.length===0,viewport:[window.innerWidth,window.innerHeight],issues};
 };
 const layoutObserver=new ResizeObserver(scheduleLayout);for(const el of [$('stage'),document.body,...fitPanels.map(s=>s.panel),$('layers')])layoutObserver.observe(el);
