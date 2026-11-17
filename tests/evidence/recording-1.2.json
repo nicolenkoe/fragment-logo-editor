@@ -1,0 +1,34 @@
+{
+  "source": "https://nicolenkoe.github.io/fragment-logo-editor/editor.html",
+  "viewport": [
+    1440,
+    900
+  ],
+  "recording": "actual browser UI; mouse, controls and state changes",
+  "counts_after_apply": [
+    4,
+    5,
+    9,
+    4
+  ],
+  "recorded_actions": [
+    "sensitivity preview and apply",
+    "move",
+    "color",
+    "uniform resizing",
+    "independent stretching",
+    "rotation",
+    "grouping",
+    "ungrouping",
+    "selected word to letters",
+    "editable text",
+    "image import",
+    "PNG export",
+    "project save/open",
+    "polygon lasso",
+    "contour transformations",
+    "cut and background fill",
+    "overlap selection priority"
+  ],
+  "layout_checks": "all recorded scenes passed window.checkEditorLayout()"
+}

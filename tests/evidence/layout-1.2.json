@@ -1,0 +1,380 @@
+[
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      1440,
+      900
+    ],
+    "issues": []
+  },
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "issues": []
+  },
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      1024,
+      768
+    ],
+    "issues": []
+  },
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "issues": []
+  },
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      375,
+      667
+    ],
+    "issues": []
+  },
+  {
+    "state": "default",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "tools",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "text",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-geometry",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-color",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "properties-actions",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  },
+  {
+    "state": "layers",
+    "ok": true,
+    "viewport": [
+      844,
+      390
+    ],
+    "issues": []
+  }
+]

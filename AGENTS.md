@@ -11,3 +11,9 @@ Cover the Text tab, polygon lasso, selection resize/rotation handles, grouping c
 For every delivered application version, provide a short numbered user acceptance checklist and a short video with Russian voiceover explaining what to verify. Send the links/files through the email channel when authorized in the conversation. Keep recipient contact information out of the public repository. The right-hand list shows applied layers only; live sensitivity previews stay on the canvas until applied.
 
 Keep automatic-splitting settings in one module above its Apply button. Re-splitting a selected layer must preserve all other layers and its complete affine transform. Selected-object frames are bright cyan with small handles: proportional corners, independent side stretching and rotation. Cropping-selection points must remain visually small with a usable invisible hit area.
+
+When testing pointer selection, cover overlapping layers: the active visible selected layer has priority anywhere inside its transformed bounds, even under a higher layer. Outside those bounds, normal picking applies. Preserve explicit layer-list selection and modifier-based multiselection.
+
+User-facing tutorial videos must be actual recordings of the current editor UI with the whole program visible, a visible cursor, real interactions and synchronized Russian voiceover. Do not substitute static illustrated slides. Show sensitivity 35/70/100 and real object counts before/after applying; include moving, color, uniform and independent sizing, rotation, grouping/ungrouping and image import. Keep the welcome page links to editor.html, current APK and video instructions working.
+
+The public root/index.html is the welcome page. Open editor.html (or click «Редактировать в браузере») for editor flows and layout checks; Android starts editor.html directly.

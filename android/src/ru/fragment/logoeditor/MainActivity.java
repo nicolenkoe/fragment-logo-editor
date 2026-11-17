@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
     catch(Exception error){chooser=null;return false;}
    }
   });
-  if(state!=null)web.restoreState(state);else web.loadUrl("file:///android_asset/www/index.html");
+  if(state!=null)web.restoreState(state);else web.loadUrl("file:///android_asset/www/editor.html");
  }
  public class FileBridge {
   @JavascriptInterface public void saveBase64(final String name,final String data,final String mime){
