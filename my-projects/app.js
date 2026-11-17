@@ -2,7 +2,7 @@
 const root='https://nicolenkoe.github.io/fragment-logo-editor/my-projects/';
 const initial=[{name:'fragment-logo-editor',site:'https://nicolenkoe.github.io/fragment-logo-editor/'},{name:'enduro-club-downloads',site:'https://nicolenkoe.github.io/enduro-club-downloads/'},{name:'my-projects',site:root}];
 const names={'fragment-logo-editor':'Фрагмент','enduro-club-downloads':'Enduro Club','my-projects':'Мои проекты'};
-const logos={'fragment-logo-editor':'assets/fragment.png','enduro-club-downloads':'assets/enduro.png','my-projects':'assets/hub.svg','hvost-pod-kontrolem':'https://nicolenkoe.github.io/enduro-club-downloads/hvost-pod-kontrolem/favicon.svg'};
+const logos={'fragment-logo-editor':'assets/fragment.png','enduro-club-downloads':'assets/enduro.png','my-projects':'assets/hub.svg','hvost-pod-kontrolem-downloads':'https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/favicon.svg'};
 let threadLinks={"my-projects":"https://chatgpt.com/local/6afbc15c-b5ac-8191-b689-765abe957078"};
 function safeThreadUrl(raw){try{const u=new URL(raw);return u.protocol==='https:'&&u.hostname==='chatgpt.com'&&!u.port&&!u.username&&!u.password&&/^\/(local|c|codex|g)\//.test(u.pathname)?u.href:null;}catch{return null;}}
 let additionalProjects=[];

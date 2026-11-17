@@ -33,13 +33,14 @@
     "my-projects": "https://chatgpt.com/local/6afbc15c-b5ac-8191-b689-765abe957078",
     "CamaraD-downloads": "https://chatgpt.com/local/01a1a8f2-2e0b-7478-8848-32a86deaf053",
     "CamaraD_App": "https://chatgpt.com/local/01a1a8f2-2e0b-7478-8848-32a86deaf053",
-    "hvost-pod-kontrolem": "https://chatgpt.com/local/01a1b372-1c96-72c5-81d3-8ce34306c06e"
+    "hvost-pod-kontrolem": "https://chatgpt.com/local/01a1b372-1c96-72c5-81d3-8ce34306c06e",
+    "hvost-pod-kontrolem-downloads": "https://chatgpt.com/local/01a1b372-1c96-72c5-81d3-8ce34306c06e"
   },
   "additionalProjects": [
     {
-      "name": "hvost-pod-kontrolem",
+      "name": "hvost-pod-kontrolem-downloads",
       "displayName": "Хвост под контролем",
-      "site": "https://nicolenkoe.github.io/enduro-club-downloads/hvost-pod-kontrolem/versions/"
+      "site": "https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/versions/"
     }
   ]
 }
