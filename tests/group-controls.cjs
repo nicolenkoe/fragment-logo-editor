@@ -1,0 +1,19 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const context=new Proxy({},{get:()=>()=>{}}),els={};
+function el(){return{width:100,height:50,style:{},dataset:{},classList:{toggle(){}},setAttribute(){},getContext:()=>context,replaceChildren(){},append(){},getBoundingClientRect:()=>({left:0,top:0,width:1000,height:760}),setPointerCapture(){}}}
+const s={document:{getElementById:id=>els[id]??=el(),createElement:el},setTimeout:()=>1,clearTimeout(){},console};vm.createContext(s);
+const run=code=>vm.runInContext(code,s),load=name=>run(fs.readFileSync(__dirname+'/../dist/'+name,'utf8'));
+load('transforms.js');load('app.js');load('object-handles.js');
+const layout=fs.readFileSync(__dirname+'/../dist/layout.js','utf8');run(layout.slice(layout.indexOf('function positionRotationHandle(){'),layout.indexOf('function refreshLayout()')));run(layout.slice(layout.indexOf('let rotationDrag=null;'),layout.indexOf('// A review hook:')));
+run("base=off(1000,760);layers=[{id:1,name:'A',img:off(40,20),x:100,y:100,scale:1,angle:25,opacity:1,visible:true},{id:2,name:'B',img:off(40,20),x:200,y:100,scale:1,angle:-10,opacity:1,visible:true},{id:3,name:'Keep',img:off(20,20),x:800,y:600,scale:1,angle:0,opacity:1,visible:true}];seq=3;selected=new Set([1,2]);active=2;mode='move';ui();refreshObjectHandles();positionRotationHandle()");
+assert.equal(run('objectHandles.every(h=>!h.element.hidden)'),true,'multi-selection exposes eight shared handles');assert.equal(els.rotateHandle.hidden,false,'shared rotate handle visible');
+const before=run('layers.map(l=>({...l}))'),frame=run('({...selectionTransformTarget()})');
+const event=(x,y)=>({clientX:x,clientY:y,pointerId:1,currentTarget:el(),preventDefault(){},stopPropagation(){}});s.ev=event(frame.x+frame.img.width/2,frame.y);run('startObjectResize(ev,1,0)');s.ev=event(frame.x+frame.img.width*1.5,frame.y);run('moveObjectResize(ev);stopObjectResize()');
+assert.equal(run('layers[2].x'),800,'unselected layer unchanged');assert.ok(Math.abs(run('selectionTransformTarget().stretchX')-2)<1e-8);
+for(let i=0;i<2;i++)for(const p of [[0,0],[12,-7]]){s.i=i;s.p=p;const result=run('(()=>{const l=layers[i],v=linearPoint(layerLinear(l),...p);return{x:l.x+v.x,y:l.y+v.y}})()'),m=s.layerLinear(before[i]),old=s.linearPoint(m,...p),anchor=frame.x-frame.img.width/2;assert.ok(Math.abs(result.x-(anchor+2*(before[i].x+old.x-anchor)))<1e-7);assert.ok(Math.abs(result.y-(before[i].y+old.y))<1e-7)}
+run("$('undo').onclick()");assert.equal(run('layers[0].x'),before[0].x,'one undo restores both members');
+let f=run('selectionTransformTarget()');s.ev=event(f.x,f.y-100);els.rotateHandle.onpointerdown(s.ev);s.ev=event(f.x+100,f.y);els.rotateHandle.onpointermove(s.ev);els.rotateHandle.onpointerup(s.ev);assert.ok(Math.abs(run('layers[0].angle')-115)<1e-7);assert.ok(Math.abs(run('layers[1].angle')-80)<1e-7);assert.ok(Math.abs(run('selectionTransformTarget().angle')-90)<1e-7,'shared frame follows rotation');
+run('groupObjects();refreshObjectHandles();positionRotationHandle()');assert.equal(run('current().children.length'),2);assert.equal(run('objectHandles.every(h=>!h.element.hidden)'),true,'persistent group retains eight handles');assert.equal(els.rotateHandle.hidden,false);
+f=run('current()');s.ev=event(f.x,f.y+f.img.height/2);run('startObjectResize(ev,0,1)');s.ev=event(f.x,f.y+f.img.height);run('moveObjectResize(ev);stopObjectResize()');assert.ok(Math.abs(run('current().stretchY')-1.5)<1e-8);
+const expected=run('current().children.map(c=>nestedTransform(c,current()))');run('ungroupObjects()');for(let i=0;i<2;i++){const l=run(`chosen()[${i}]`);for(const k of ['x','y','angle','scale','stretchX','stretchY','skew'])assert.ok(Math.abs(l[k]-expected[i][k])<1e-7,`ungroup preserves ${k}`)}
+console.log('PASS: shared handles for multiple selection and groups, affine member geometry, rotation, height stretching, unselected-layer isolation, undo and transformed ungroup');

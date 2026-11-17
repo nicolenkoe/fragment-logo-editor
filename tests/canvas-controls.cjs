@@ -2,7 +2,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const code=fs.readFileSync(__dirname+'/../dist/layout.js','utf8');
 const object={id:1,x:100,y:100,angle:0,scale:1,img:{width:100,height:80}};
 const elements={rotateHandle:{style:{},setPointerCapture(){}},angle:{},angleValue:{}};let checkpoints=0,renders=0;
-const sandbox={layers:[object],current:()=>object,$:id=>elements[id],point:e=>({x:e.clientX,y:e.clientY}),checkpoint:()=>checkpoints++,render:()=>renders++,Math};vm.createContext(sandbox);
+const sandbox={layers:[object],current:()=>object,selectionTransformTarget:()=>object,findTransformTarget:()=>object,applySelectionTransform(){},$:id=>elements[id],point:e=>({x:e.clientX,y:e.clientY}),checkpoint:()=>checkpoints++,render:()=>renders++,Math};vm.createContext(sandbox);
 vm.runInContext(code.slice(code.indexOf('let rotationDrag=null;'),code.indexOf('// A review hook:')),sandbox);
 const handle=elements.rotateHandle,event=(x,y,extra={})=>({clientX:x,clientY:y,pointerId:1,preventDefault(){},stopPropagation(){},...extra});
 handle.onpointerdown(event(100,0));handle.onpointermove(event(200,100));assert.equal(object.angle,90);handle.onpointermove(event(100,200));assert.equal(object.angle,-180);handle.onpointerup(event(100,200));assert.equal(checkpoints,1,'one undo checkpoint per gesture');

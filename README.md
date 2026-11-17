@@ -1,4 +1,4 @@
-# Фрагмент 1.2 — редактор логотипов
+# Фрагмент 1.2.1 — редактор логотипов
 
 Браузерный редактор изображений со слоями, автоматическим разделением объектов и Android-приложением, которое работает без сети.
 
@@ -9,7 +9,7 @@
 - [Короткая видеоинструкция](https://logo-fragment-studio.devotedsesame.chatgpt.site/videos.html?video=quick)
 - [Полный видеообзор](https://logo-fragment-studio.devotedsesame.chatgpt.site/videos.html?video=overview)
 
-- [Что проверить в версии 1.2](RELEASE_CHECKLIST.md)
+- [Что проверить в версии 1.2.1](RELEASE_CHECKLIST.md)
 - [Короткое видео проверки](https://logo-fragment-studio.devotedsesame.chatgpt.site/videos.html?video=checks)
 
 ## Изменения в 1.2
@@ -70,3 +70,9 @@ node tests/object-handles.cjs
 Для сборки нужны Java Runtime, Android SDK Platform 35, Build Tools 35.0.0 и Eclipse ECJ 3.37.0. Скрипт `android/build-local.sh` принимает переменные `FRAGMENT_ANDROID_TOOLS` (каталог с `android-35`, `android-15` и `ecj.jar`), `FRAGMENT_ANDROID_BUILD` (временная сборка) и `FRAGMENT_ANDROID_KEYSTORE` (путь к сохраняемому ключу подписи). Ключи подписи не включены в репозиторий.
 
 Шрифты DejaVu поставляются с лицензией в `dist/assets/fonts/LICENSE.txt`.
+
+## Изменения в 1.2.1
+
+Общая голубая рамка для нескольких выбранных объектов: восемь точек изменения размера и поворот. После объединения группа сохраняет те же органы управления. Растяжение и вращение применяются ко всем участникам; разбор группы сохраняет их преобразования.
+
+Логические проверки пройдены. Браузерная проверка шести размеров и новое видео для 1.2.1 недоступны в текущем окружении; опубликованные видео относятся к 1.2.
