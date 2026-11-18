@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 9,
+      "versionName": "1.8",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.8.apk",
+      "sha256": "7d31a46b436754d1cea5b9ac1afdf719d016950f4acd38bc9d9fd5ecbaf204c4",
+      "sizeBytes": 701170,
+      "notes": "Все шесть подтверждённых ссылок «Ветка Codex» встроены в APK и веб-каталог: Мои проекты, CamaraD, Enduro Club, Фрагмент, Запись экрана и Хвост. У Хвоста исправлен адрес на 6af50efb…, у Enduro сохранён 01a1b372…. Начальный каталог и ссылки доступны без GitHub, устаревший кеш ссылок обновляется. Обновление каталога также обновляет привязки. Сохранены обновления и открытие ссылок из 1.7.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 8,
       "versionName": "1.7",
       "channel": "testing",

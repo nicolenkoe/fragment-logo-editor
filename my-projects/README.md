@@ -1,4 +1,4 @@
-# Мои проекты 1.7 — тестовая сборка
+# Мои проекты 1.8 — тестовая сборка
 
 Сайт: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/
 APK: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.6.apk
@@ -31,3 +31,9 @@ ACTION_VIEW + CATEGORY_BROWSABLE + Browser.EXTRA_CREATE_NEW_TAB=true + FLAG_ACTI
 
 APK 1.7: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.7.apk
 Проверки: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/checks-1.7.html
+
+## Codex-ссылки в 1.8
+
+Все шесть текущих проектов имеют подтверждённые владельцем ветки. Одинаковые встроенные карты применяются в APK и браузере, серверный projectThreads продолжает обновлять их без сборки. Встроенный начальный каталог содержит шесть публичных сайтов. Исправлены устаревшие привязки «Хвоста» и разделение с Enduro. Старая версия кеша сбрасывается один раз; серверные обновления затем сохраняются как обычно. Веб-каталог хранит проверенные ссылки в localStorage. В APK ручное обновление каталога также инициирует обновление привязок.
+
+Проверки: ProjectThreadsTest (точные шесть адресов и алиасы), шесть кнопок в мобильном веб-каталоге онлайн и без GitHub, игнорирование прежней неверной ссылки Хвоста в старом кеше. Адреса переписок не открывались под аккаунтом владельца; доступ к содержимому зависит от его входа в ChatGPT.
