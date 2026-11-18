@@ -1,0 +1,14 @@
+{
+  "nativeChanges": [
+    "heading wrap_content, no autosizing or ellipsis",
+    "card wrap_content with minimum height",
+    "large font full-width heading",
+    "button dimensions follow fontScale",
+    "large-font links and logo below buttons"
+  ],
+  "logoSource": "HvostPodKontrolem-0.59.apk res/Ug.png",
+  "logoSha256": "31eb2e42657697c81697ae03ca2cd7154068ea5f9ba96ba1f70aad19317d862f",
+  "nativeBuild": "passed",
+  "webRegression": "passed three layouts and four widths",
+  "androidFontScaleDeviceTest": "pending; no Android device available"
+}

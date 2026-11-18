@@ -9,3 +9,5 @@ final result: passed
 
 
 Version 1.14: inspected tests/implementation-1.14-mode-3.png. Added English GitHub beside Codex using same row height, original icons retained. Browser geometry asserts both links fit without overlap at 320/360/390/768 in all three layouts. Native build passed; physical Android verification remains pending.
+
+Version 1.15: accessibility fix for Android fixed title/card heights; original Hvost 0.59 launcher logo extracted. Web regression passed. Android large-font behavior requires physical-device confirmation; compile/sign verification only.

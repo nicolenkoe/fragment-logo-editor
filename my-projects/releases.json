@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 16,
+      "versionName": "1.15",
+      "channel": "testing",
+      "releasedAt": "2026-11-19",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.15.apk",
+      "sha256": "8d590502b602b9e0ece15439766157d8af027af83f03289ffd8ece037d8602cf",
+      "sizeBytes": 1135694,
+      "notes": "Исправлено обрезание названий при увеличенном системном шрифте: автоматическая высота карточки, название без фиксированной высоты, адаптивные кнопки; при крупном шрифте название занимает всю ширину. Обновлён оригинальный логотип Хвоста из APK 0.59. Сохранены три вида списка и ссылки Codex/GitHub.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 15,
       "versionName": "1.14",
       "channel": "testing",
