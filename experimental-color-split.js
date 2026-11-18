@@ -12,7 +12,7 @@ function automaticSource(){
  const image=bc().getImageData(rect.x,rect.y,rect.w,rect.h);if(cached)image.data.set(cached.pixels);
  return{kind:'base',image,rect,shape,previousSession:cached,replaceIds:cached?cached.ids:[],baseReference:base};
 }
-function automaticOptions(source){return{tolerance:+$('backgroundTolerance').value||55,detail:Math.min(+$('splitTolerance').value,+$('colorSensitivity').value),colorSensitivity:+$('colorSensitivity').value,transparentBackground:source.transparentBackground===true}}
+function automaticOptions(source){return{tolerance:1+1.59*Number($('backgroundTolerance').value),detail:Math.min(+$('splitTolerance').value,+$('colorSensitivity').value),colorSensitivity:+$('colorSensitivity').value,transparentBackground:source.transparentBackground===true}}
 function automaticInput(source){return typeof maskForSegmentation==='function'?maskForSegmentation(source.image,source.rect,source.shape):source.image}
 function makeAutomaticParts(source,result){const ids=new Map();result.groups.forEach((g,i)=>g.ids.forEach(id=>ids.set(id,i)));const images=result.groups.map(g=>{const canvas=off(g.w,g.h);return{canvas,pixels:canvas.getContext('2d').createImageData(g.w,g.h)}}),cleaned=new Uint8ClampedArray(source.image.data);
  for(let p=0;p<result.labels.length;p++){const gi=ids.get(result.labels[p]);if(gi===undefined)continue;const g=result.groups[gi],x=p%source.rect.w,y=Math.floor(p/source.rect.w),di=((y-g.y)*g.w+x-g.x)*4;for(let k=0;k<4;k++){images[gi].pixels.data[di+k]=source.image.data[p*4+k];cleaned[p*4+k]=result.background[k]}}

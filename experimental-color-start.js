@@ -1,7 +1,7 @@
 (async()=>{try{
- const count=document.getElementById('splitResult'),colorCount=document.getElementById('colorResult');const sync=()=>colorCount.textContent=count.textContent;new MutationObserver(sync).observe(count,{childList:true,characterData:true,subtree:true});sync();
+ const count=document.getElementById('splitResult'),colorCount=document.getElementById('colorResult');const sync=()=>{colorCount.textContent=count.textContent;if(typeof scheduleLayout==='function')scheduleLayout()};new MutationObserver(sync).observe(count,{childList:true,characterData:true,subtree:true});sync();
  const input=document.getElementById('colorSensitivity');input.oninput=()=>{document.getElementById('colorSensitivityValue').textContent=input.value;if(typeof scheduleSplitPreview==='function')scheduleSplitPreview();else document.getElementById('backgroundTolerance').dispatchEvent(new Event('input',{bubbles:true}))};
  const image=await loadImg('examples/color-parts/complex.svg');applySource(image,'Тест: 16 деталей, соединения и близкие к фону оттенки',false);setMode('move');
- document.getElementById('splitTolerance').value='100';document.getElementById('backgroundTolerance').value='4';document.getElementById('splitTolerance').dispatchEvent(new Event('input',{bubbles:true}));document.getElementById('backgroundTolerance').dispatchEvent(new Event('input',{bubbles:true}));
- toast('Тестовый алгоритм: 16 деталей. Допуск фона 4 сохраняет почти белые части.');
+ document.getElementById('splitTolerance').value='100';document.getElementById('backgroundTolerance').value='2';document.getElementById('splitTolerance').dispatchEvent(new Event('input',{bubbles:true}));document.getElementById('backgroundTolerance').dispatchEvent(new Event('input',{bubbles:true}));
+ toast('Тестовый алгоритм: 16 деталей. Допуск фона 2 сохраняет почти белые части.');
  }catch(e){toast('Не удалось открыть тестовый пример: '+e.message)}})();
