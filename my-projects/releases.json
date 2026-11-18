@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 13,
+      "versionName": "1.12",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.12.apk",
+      "sha256": "40ab67011727f7e81fe98fe1e6650e0457e533f818e5780b7a89519a8b8cf46d",
+      "sizeBytes": 1082446,
+      "notes": "Три вида списка в настройках с сохранением выбора. По умолчанию третий компактный вариант. Название над оригинальным логотипом, ссылка Codex сдвинута вправо. Узкая кнопка Сайт и копирование вместе равны ширине кнопки Запуск. Сохранены запуск приложений, браузер, обновления и подключение GitHub.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 12,
       "versionName": "1.11",
       "channel": "testing",
