@@ -13,10 +13,9 @@ for(let p=0;p<result.labels.length;p++){
  if(result.labels[p]){foreground++;if(!retained.has(result.labels[p]))missing++}
 }
 assert.ok(foreground>300);assert.equal(missing,0,'all detected letter pixels including dots are retained');
-const letters=segment(image,{groupWords:false});
-// Some tiny raster glyphs touch, so individual connected pieces can contain
-// multiple letters. The dot and stem of a narrow i must still stay together.
-assert.ok(letters.groups.some(g=>g.w===1&&g.h===8&&g.ids.length===2),'one-pixel i stem keeps its dot');
+const letters=segment(image,{detail:100});
+// Touching glyphs remain connected; isolated dots deliberately separate at maximum.
+assert.ok(letters.groups.some(g=>g.w===1&&g.h===1&&g.ids.length===1),'at maximum, a detached dot is an independent component');assert.ok(letters.groups.some(g=>g.w===1&&g.h===5),'thin stem retained');
 const detailIds=new Set(letters.groups.flatMap(g=>g.ids));
 for(let p=0;p<letters.labels.length;p++)if(letters.labels[p])assert.ok(detailIds.has(letters.labels[p]),'detail mode preserves small text pixels');
-console.log('PASS: complete small words at 8, 10, 14 px; every detected letter pixel retained; narrow stems retain their dots');
+console.log('PASS: complete small words at 8, 10, 14 px; every detected letter pixel retained; all tiny dots and thin stems survive maximum sensitivity');

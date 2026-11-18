@@ -1,8 +1,10 @@
 const assert=require('node:assert/strict'),segment=require('../dist/segment.js'),decode=require('./helpers/png.cjs');
-const image=decode(__dirname+'/../dist/assets/enduro-logo.png');
-const coarse=segment(image,{detail:35}),medium=segment(image,{detail:70}),fine=segment(image,{detail:100});
-assert.equal(coarse.groups.length,4,'motorcycle including 123 plus three words');assert.equal(medium.groups.length,5,'123 becomes its own object');assert.equal(fine.groups.length,9,'internal details separate');
-assert.deepEqual(coarse.groups.map(g=>[g.x,g.y,g.w,g.h]),[[71,107,1004,949],[782,686,355,144],[545,879,504,130],[110,1090,1082,104]]);
-const number=medium.groups.find(g=>g.x===252&&g.y===631);assert.ok(number);assert.equal(number.ids.length,3);for(const id of number.ids)assert.ok(coarse.groups[0].ids.includes(id),'number retained inside motorcycle at low detail');
-const lowIds=new Set(coarse.groups.flatMap(g=>g.ids)),highIds=new Set(fine.groups.flatMap(g=>g.ids));assert.deepEqual(lowIds,highIds,'changing detail regroups but never discards components');
-console.log('PASS: actual logo has 4, 5 or 9 objects at sensitivity 35, 70 or 100 without lost pixels');
+const image=decode(__dirname+'/../dist/assets/enduro-logo.png'),fine=segment(image,{detail:100}),ids=new Set(fine.groups.flatMap(g=>g.ids));assert.equal(fine.groups.length,32,'maximum separates every connected ink component');assert.ok(fine.groups.every(g=>g.ids.length===1));
+let previous=null;for(const detail of [0,5,10,15,20,25,30,35,45,55,65,70,80,85,88,90,95,97,99,100]){const r=segment(image,{detail});assert.deepEqual(new Set(r.groups.flatMap(g=>g.ids)),ids,'no foreground components lost at '+detail);if(previous){assert.ok(r.groups.length>=previous.groups.length,'count never decreases');const owner=new Map(previous.groups.flatMap((g,i)=>g.ids.map(id=>[id,i])));for(const g of r.groups)assert.equal(new Set(g.ids.map(id=>owner.get(id))).size,1,'higher sensitivity only refines existing groups')}previous=r}
+assert.equal(segment(image,{detail:0}).groups.length,2);assert.equal(segment(image,{detail:35}).groups.length,4);assert.equal(segment(image,{detail:70}).groups.length,5);
+const coarse=segment(image,{detail:35});assert.deepEqual(coarse.groups.map(g=>[g.x,g.y,g.w,g.h]),[[71,107,1004,949],[782,686,355,144],[545,879,504,130],[110,1090,1082,104]]);
+// Check every integer value using a small multi-word drawing, including tiny marks.
+const W=240,H=100,data=new Uint8ClampedArray(W*H*4).fill(255);for(const [x,y,w,h] of [[10,10,10,30],[25,10,10,30],[40,10,10,30],[100,10,10,30],[115,10,10,30],[130,10,10,30],[160,65,20,20],[220,60,1,1]])for(let j=y;j<y+h;j++)for(let i=x;i<x+w;i++){const p=(j*W+i)*4;data[p]=data[p+1]=data[p+2]=0}
+let count=0;for(let detail=0;detail<=100;detail++){const r=segment({width:W,height:H,data},{detail});assert.ok(r.groups.length>=count);count=r.groups.length;const retained=new Set(r.groups.flatMap(g=>g.ids));for(const id of r.labels)if(id)assert.ok(retained.has(id))}assert.equal(count,8,'maximum includes one-pixel isolated mark');
+const single=new Uint8ClampedArray(100*100*4).fill(255);for(let y=10;y<20;y++)for(let x=10;x<20;x++){const p=(y*100+x)*4;single[p]=single[p+1]=single[p+2]=0}assert.equal(segment({width:100,height:100,data:single},{detail:0}).groups.length,1,'never invent a cut through a single connected object');
+console.log('PASS: real logo 2/4/5/32 objects, nested monotone refinement, every slider value, tiny-mark retention and no invented cuts');

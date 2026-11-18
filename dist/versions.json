@@ -2,6 +2,26 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.2",
+      "versionCode": 10,
+      "channel": "testing",
+      "date": "2026-11-18",
+      "publishedAt": "2026-11-18T11:37:02Z",
+      "notes": [
+        "Разделение одним ползунком: от двух крупных групп до отдельных букв и деталей.",
+        "1961 бесплатное семейство, поиск шрифтов и 12 дополнительных встроенных семейств.",
+        "Изгиб текста дугой и полукругом; личная сохраняемая палитра оттенков."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.2/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.2/fragment-source.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.2/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.1",
       "versionCode": 9,
       "channel": "testing",

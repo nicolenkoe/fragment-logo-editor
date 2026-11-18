@@ -1,0 +1,1 @@
+Unmodified open-source fonts served by Google Fonts CSS2 API. Family licenses are included next to the font files. Catalog snapshot: https://fonts.google.com/metadata/fonts (2026-11-18). Only isOpenSource=true families included in font-catalog.js.

@@ -1,0 +1,26 @@
+'use strict';
+(function(){
+const catalog=FragmentFontCatalog,byName=new Map(catalog.map(r=>[r.n,r])),loaded=new Map();
+const builtins=[['FragmentSans','DejaVu Sans — без засечек'],['FragmentSerif','DejaVu Serif — с засечками'],['FragmentMono','DejaVu Sans Mono — моноширинный']];
+const system={SystemTimes:{name:'Times New Roman',fallback:'Tinos',keywords:'тайм таймс нью роман'},SystemArial:{name:'Arial',fallback:'Arimo',keywords:'ариал'},SystemCourier:{name:'Courier New',fallback:'Cousine',keywords:'курьер'}};
+function spec(family,opts={}){return (opts.italic?'italic ':'')+(opts.bold?'700 ':'400 ')+'16px '+JSON.stringify(family)}
+function hasSystem(family){const c=document.createElement('canvas').getContext('2d'),sample='mmmmWWWii12345';for(const base of ['monospace','sans-serif','serif']){c.font='72px '+base;const width=c.measureText(sample).width;c.font='72px '+JSON.stringify(family)+','+base;if(Math.abs(c.measureText(sample).width-width)>.1)return true}return false}
+function styleUrl(row){const chosen=['400','700','400i','700i'].filter(s=>row.s.includes(s));if(!chosen.length)chosen.push(row.s[0]);const pairs=chosen.map(s=>[s.endsWith('i')?1:0,parseInt(s)]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);return 'https://fonts.googleapis.com/css2?family='+encodeURIComponent(row.n+':ital,wght@'+pairs.map(p=>p.join(',')).join(';'))+'&display=block'}
+async function ensure(id,opts={}){
+ if(builtins.some(r=>r[0]===id))return id;
+ if(system[id]){const entry=system[id];if(hasSystem(entry.name))return JSON.stringify(entry.name);id='GF:'+entry.fallback}
+ const name=id?.startsWith('GF:')?id.slice(3):null,row=byName.get(name);if(!row)throw Error('Шрифт не найден. Выберите его из каталога.');if(/[А-Яа-яЁё]/.test(opts.text||'')&&!row.c)throw Error('У этого шрифта нет кириллицы. Включите фильтр «Кириллица».');
+ if(!row.b){if(!loaded.has(name)){const promise=new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.crossOrigin='anonymous';link.href=styleUrl(row);const timer=setTimeout(()=>{link.remove();reject(Error('Не удалось загрузить шрифт. Проверьте интернет или выберите встроенный.'))},20000);link.onload=()=>{clearTimeout(timer);resolve()};link.onerror=()=>{clearTimeout(timer);link.remove();reject(Error('Для этого шрифта нужен интернет.'))};document.head.append(link)});loaded.set(name,promise);promise.catch(()=>loaded.delete(name))}await loaded.get(name)}
+ let faces;try{faces=await document.fonts.load(spec(name,opts),opts.text||'ABC')}catch{throw Error('Не удалось загрузить шрифт. Выберите встроенный или проверьте интернет.')}if(!faces.length)throw Error('Шрифт не загрузился. Выберите встроенный или проверьте интернет.');return JSON.stringify(name);
+}
+let token=0;
+function filter(){const select=$('textFont'),current=select.value||'FragmentSans',q=$('fontSearch').value.trim().toLocaleLowerCase(),cyr=$('fontCyrillic').checked;select.replaceChildren();function group(label,rows){if(!rows.length)return;const g=document.createElement('optgroup');g.label=label;for(const [id,title] of rows){const o=document.createElement('option');o.value=id;o.textContent=title;g.append(o)}select.append(g)}
+ const matches=(text,keywords='')=>(text+' '+keywords).toLocaleLowerCase().includes(q);
+ group('Встроенные — без интернета',builtins.filter(r=>matches(r[1])));
+ group('Шрифты устройства / бесплатная замена',Object.entries(system).filter(([_,r])=>matches(r.name+' '+r.fallback,r.keywords)).map(([id,r])=>[id,r.name+' / '+r.fallback]));
+ const fonts=catalog.filter(r=>(!cyr||r.c)&&matches(r.n));group('Бесплатные — встроены',fonts.filter(r=>r.b).map(r=>['GF:'+r.n,r.n+(r.c?' · Я':'' )]));group('Google Fonts — интернет',fonts.filter(r=>!r.b).map(r=>['GF:'+r.n,r.n+(r.c?' · Я':'' )]));
+ const options=[...select.options];if(!options.some(o=>o.value===current)){const o=document.createElement('option');o.value=current;o.textContent=current.startsWith('GF:')?current.slice(3):builtins.find(r=>r[0]===current)?.[1]||system[current]?.name||'Выбранный шрифт';select.prepend(o)}select.value=current;$('fontStatus').textContent='Каталог: '+catalog.length+' бесплатных семейств. Я — кириллица.';if(typeof scheduleLayout==='function')scheduleLayout();}
+async function preview(){const my=++token,id=$('textFont').value;$('fontStatus').textContent='Загружаем шрифт…';try{const family=await ensure(id,{bold:$('textBold').checked,italic:$('textItalic').checked,text:$('textContent').value});if(my!==token)return;$('textContent').style.fontFamily=family;$('fontStatus').textContent=system[id]?'Шрифт устройства; если отсутствует — '+system[id].fallback+'.':id.startsWith('GF:')?(byName.get(id.slice(3)).b?'Встроенный бесплатный шрифт.':'Бесплатный шрифт Google Fonts загружен.'):'Встроенный бесплатный шрифт.'}catch(e){if(my===token)$('fontStatus').textContent=e.message}if(typeof scheduleLayout==='function')scheduleLayout()}
+function select(id){$('fontSearch').value='';$('fontCyrillic').checked=false;filter();$('textFont').value=id;if(!$('textFont').value){const o=document.createElement('option');o.value=id;o.textContent=id; $('textFont').append(o);$('textFont').value=id}preview()}
+globalThis.FragmentFonts={ensure,select,catalog,styleUrl};$('fontSearch').oninput=filter;$('fontCyrillic').onchange=filter;$('textFont').onchange=preview;filter();
+})();
