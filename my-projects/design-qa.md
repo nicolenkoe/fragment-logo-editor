@@ -6,3 +6,6 @@ Typography: local Roboto retained; Codex English, titles above logos and do not 
 Browser interactions: all three layouts persist through reload, search/settings separate, filters/reset, copy, six Codex links, desktop Launch explanation; no JS errors. Physical Android install and native layout/launch require device verification; native compile/signature checks passed.
 P3: browser text uses native platform rasterization, which differs slightly from generated reference. Controls have a deliberate 32px visual height to match approved compact design.
 final result: passed
+
+
+Version 1.14: inspected tests/implementation-1.14-mode-3.png. Added English GitHub beside Codex using same row height, original icons retained. Browser geometry asserts both links fit without overlap at 320/360/390/768 in all three layouts. Native build passed; physical Android verification remains pending.

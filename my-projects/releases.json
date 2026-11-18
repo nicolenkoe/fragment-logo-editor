@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 15,
+      "versionName": "1.14",
+      "channel": "testing",
+      "releasedAt": "2026-11-19",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.14.apk",
+      "sha256": "8c0861024279373fb72196cd0a70860ea499a155333048a3a6ac33b3d5a741ff",
+      "sizeBytes": 1082446,
+      "notes": "Добавлены отдельные ссылки GitHub рядом с Codex во всех трёх видах списка. CamaraD и Enduro ведут в репозитории исходников CamaraD_App и enduro_moto. Хвост привязан к отдельному репозиторию hvost-pod-kontrolem и отдельному сайту hvost-pod-kontrolem-downloads. Остальные функции сохранены.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 14,
       "versionName": "1.13",
       "channel": "testing",
@@ -159,9 +172,10 @@
   },
   "additionalProjects": [
     {
-      "name": "hvost-pod-kontrolem-downloads",
+      "name": "hvost-pod-kontrolem",
       "displayName": "Хвост под контролем",
-      "site": "https://nicolenkoe.github.io/enduro-club-downloads/hvost-pod-kontrolem/?v=57"
+      "site": "https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/",
+      "html_url": "https://github.com/nicolenkoe/hvost-pod-kontrolem"
     }
   ]
 }

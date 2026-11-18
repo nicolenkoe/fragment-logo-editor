@@ -1,0 +1,9 @@
+{
+  "version": "1.14",
+  "code": 15,
+  "sha256": "8c0861024279373fb72196cd0a70860ea499a155333048a3a6ac33b3d5a741ff",
+  "sizeBytes": 1082446,
+  "signer": "62acbeea2a4cef8bf11cec848b81038c76d4778a7e55192c1cbc694afa83f86c",
+  "web": "passed",
+  "deviceVerification": "pending: install, native app launch, Android browser intent bridge"
+}

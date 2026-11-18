@@ -1,0 +1,14 @@
+{
+  "version": "1.14",
+  "checks": [
+    "six repository links",
+    "source repositories for CamaraD and Enduro",
+    "independent Hvost repository, site and Codex",
+    "no duplicate Hvost card",
+    "three layouts persist",
+    "links fit at widths 320,360,390,768",
+    "website copy address",
+    "same APK signing certificate"
+  ],
+  "deviceTest": "not available"
+}
