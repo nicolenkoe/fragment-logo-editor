@@ -47,3 +47,7 @@ The native APK is compiled and signed with the previous certificate. Its toolbar
 - [x] Record native-device verification limit.
 
 final result: passed
+
+
+## Version 1.10
+Implemented approved Site/Launch vertical button layout, copy aligned with Site. Inspected mobile web screenshot; original logos retained. Automated layout and existing search/settings/copy checks passed at 320, 390, 768 px. Android package identifiers verified from published APK manifests. Native compile/signature/DEX checks passed. Physical Android launch, browser intent bridge and installation remain pending device verification.

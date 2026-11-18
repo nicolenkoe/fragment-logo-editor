@@ -3,6 +3,32 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 11,
+      "versionName": "1.10",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.10.apk",
+      "sha256": "25b9e60942d216adae6059be72994397cb0506fd1e5345cb3075b61355cb0c0c",
+      "sizeBytes": 1598542,
+      "notes": "Кнопка «Сайт» открывает страницу; «Запуск» ниже запускает установленное Android-приложение. Имена пакетов сверены с опубликованными APK всех проектов. Если приложение отсутствует или отключено — предлагается его страница скачивания. Веб-версия передаёт запуск установленному «Мои проекты» на Android. Сохранены оригинальные значки, Codex, копирование, настройки браузера и автоматические обновления.",
+      "withdrawn": false
+    },
+    {
+      "versionCode": 11,
+      "versionName": "1.10",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.10.apk",
+      "sha256": "25b9e60942d216adae6059be72994397cb0506fd1e5345cb3075b61355cb0c0c",
+      "sizeBytes": 1598542,
+      "notes": "Кнопка «Сайт» открывает страницу; «Запуск» ниже запускает установленное Android-приложение. Имена пакетов сверены с опубликованными APK всех проектов. Если приложение отсутствует или отключено — предлагается его страница скачивания. Веб-версия передаёт запуск установленному «Мои проекты» на Android. Сохранены оригинальные значки, Codex, копирование, настройки браузера и автоматические обновления.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 10,
       "versionName": "1.9",
       "channel": "testing",
