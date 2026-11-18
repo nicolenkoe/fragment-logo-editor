@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 8,
+      "versionName": "1.7",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.7.apk",
+      "sha256": "7c408469adb4320a0ec4f4cde3d7680dcaa08ebf257fc923a18711cd29ea6467",
+      "sizeBytes": 701170,
+      "notes": "Обход повторного использования зависшей вкладки: ссылки передаются браузеру с запросом новой вкладки и выводом его задачи на передний план. Долгое нажатие на «Открыть сайт» показывает выбор другого браузера. Адрес ссылки и система обновлений 1.6 не менялись. Исправление требует проверки в Яндекс Браузере на телефоне: браузер может по-своему обрабатывать запрос новой вкладки.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 7,
       "versionName": "1.6",
       "channel": "testing",

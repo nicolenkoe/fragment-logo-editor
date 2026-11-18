@@ -1,4 +1,4 @@
-# Мои проекты 1.6 — тестовая сборка
+# Мои проекты 1.7 — тестовая сборка
 
 Сайт: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/
 APK: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.6.apk
@@ -24,3 +24,10 @@ java -cp /tmp/hub-update-tests UpdateEngineTest
 26 проверок выбора, совместимости, кеширования, сетевых запросов, целостности и идентичности APK. Дополнительно реальный APK 1.6 прочитан aapt2/apksigner, сертификат сверен с 1.5, проверена подготовка и повторное использование через UpdateEngine. Это не заменяет проверку Android-установщика на устройстве.
 
 Следующий выпуск: увеличить versionCode, подписать тем же ключом, загрузить новый неизменяемый файл, добавить в releases.json точные sizeBytes/sha256/minSdk/channel и описание. JSON и APK публиковать одним коммитом. Не менять байты APK уже опубликованного имени. projectThreads и additionalProjects сохранены.
+
+## Ссылки в 1.7
+
+ACTION_VIEW + CATEGORY_BROWSABLE + Browser.EXTRA_CREATE_NEW_TAB=true + FLAG_ACTIVITY_NEW_TASK. Без добавления параметров к адресу и без очистки данных браузера. Удерживание «Открыть сайт» показывает системный выбор обработчика ссылки. Код обновлений 1.6 не изменён. Ошибка Яндекс Браузера не воспроизводилась в среде сборки, поэтому устранение нужно подтвердить на устройстве.
+
+APK 1.7: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.7.apk
+Проверки: https://nicolenkoe.github.io/fragment-logo-editor/my-projects/checks-1.7.html
