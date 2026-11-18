@@ -1,9 +1,7 @@
 package com.nicolenkoe.hub;
 /** The shared release selection rules. No Android dependencies. */
 public final class UpdatePolicy {
- public static boolean eligible(int installed,int candidate,String channel,boolean testing,boolean withdrawn){
-  return !withdrawn&&candidate>installed&&("stable".equals(channel)||(testing&&"testing".equals(channel)));
- }
+ public static boolean channelAllowed(String channel,boolean stableOnly){return "stable".equals(channel)||(!stableOnly&&("testing".equals(channel)||"experimental".equals(channel)));}
  public static boolean trustedUrl(String value){
   try{java.net.URI u=new java.net.URI(value);return "https".equals(u.getScheme())&&"nicolenkoe.github.io".equals(u.getHost())&&u.getPort()==-1&&u.getRawUserInfo()==null&&u.getRawQuery()==null&&u.getRawFragment()==null&&u.getRawPath().matches("/fragment-logo-editor/my-projects/my-projects-[0-9]+(?:\\.[0-9]+)*\\.apk");}catch(Exception e){return false;}
  }

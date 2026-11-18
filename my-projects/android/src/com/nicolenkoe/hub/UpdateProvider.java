@@ -3,7 +3,7 @@ import android.content.*;import android.database.*;import android.net.Uri;import
 /** Exposes only the verified cached APK, with a temporary read grant. */
 public class UpdateProvider extends ContentProvider {
  public boolean onCreate(){return true;}
- private File file(Uri uri)throws FileNotFoundException{if(!"com.nicolenkoe.hub.updates".equals(uri.getAuthority())||!"/update.apk".equals(uri.getPath()))throw new FileNotFoundException();return new File(getContext().getCacheDir(),"updates/update.apk");}
+ private File file(Uri uri)throws FileNotFoundException{String name=uri.getLastPathSegment();if(!"com.nicolenkoe.hub.updates".equals(uri.getAuthority())||uri.getPathSegments().size()!=1||name==null||!name.matches("[0-9]+-[a-f0-9]{64}\\.apk"))throw new FileNotFoundException();return new File(new File(getContext().getFilesDir(),"updates"),name);}
  public String getType(Uri uri){return "application/vnd.android.package-archive";}
  public ParcelFileDescriptor openFile(Uri uri,String mode)throws FileNotFoundException{if(!"r".equals(mode))throw new FileNotFoundException();return ParcelFileDescriptor.open(file(uri),ParcelFileDescriptor.MODE_READ_ONLY);}
  public Cursor query(Uri uri,String[] projection,String selection,String[] args,String sort){try{File f=file(uri);String[] columns=projection==null?new String[]{OpenableColumns.DISPLAY_NAME,OpenableColumns.SIZE}:projection;MatrixCursor cursor=new MatrixCursor(columns);Object[] values=new Object[columns.length];for(int i=0;i<columns.length;i++)values[i]=OpenableColumns.DISPLAY_NAME.equals(columns[i])?"my-projects-update.apk":OpenableColumns.SIZE.equals(columns[i])?f.length():null;cursor.addRow(values);return cursor;}catch(Exception e){return null;}}

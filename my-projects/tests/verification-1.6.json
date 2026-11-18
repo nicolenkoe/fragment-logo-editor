@@ -1,0 +1,12 @@
+{
+  "version": "1.6",
+  "versionCode": 7,
+  "date": "2026-11-18",
+  "engineAssertions": 26,
+  "realSignedApk": "passed",
+  "sameSignerAs1_5": true,
+  "otherUiCodeUnchanged": true,
+  "androidInstallerOnDevice": "not_run_no_android_device",
+  "sha256": "a0c611ca5956f28bfc2a3aceae7ff41300e890638daab0dffd8b35327725a8d4",
+  "sizeBytes": 697074
+}

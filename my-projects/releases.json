@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 7,
+      "versionName": "1.6",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.6.apk",
+      "sha256": "a0c611ca5956f28bfc2a3aceae7ff41300e890638daab0dffd8b35327725a8d4",
+      "sizeBytes": 697074,
+      "notes": "По умолчанию автоматически скачиваются новые совместимые стабильные, тестовые и экспериментальные сборки. Проверка при запуске и каждом возвращении. Галочка «Только стабильные версии» выключена по умолчанию. Исправный APK повторно проверяется и используется без скачивания. «Позже» откладывает только установку. Проверки размера, SHA-256, пакета, номера версии и подписи; установку подтверждает Android. Остальной интерфейс не изменён.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 6,
       "versionName": "1.5",
       "channel": "testing",
