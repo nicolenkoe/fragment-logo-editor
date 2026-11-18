@@ -19,11 +19,13 @@ public class MainActivity extends Activity {
  private WebView web;
  private ValueCallback<Uri[]> chooser;
  private byte[] pendingFile;
+ private UpdateManager updates;private java.io.File installAfterPermission;
  private static final int OPEN_FILE=100,SAVE_FILE=101;
  @Override public void onCreate(Bundle state){
   super.onCreate(state);getWindow().setStatusBarColor(Color.rgb(250,251,247));getWindow().setNavigationBarColor(Color.rgb(238,239,235));
   int flags=android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;if(android.os.Build.VERSION.SDK_INT>=26)flags|=android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;getWindow().getDecorView().setSystemUiVisibility(flags);
   web=new WebView(this);setContentView(web);WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+  updates=new UpdateManager(this,new UpdateManager.Host(){public void state(final JSONObject value){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentNativeUpdate&&window.fragmentNativeUpdate("+value.toString()+")",null);}});}public void install(final java.io.File file){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())launchUpdateInstall(file);}});}});
   web.addJavascriptInterface(new FileBridge(),"AndroidFiles");web.addJavascriptInterface(new UpdateBridge(),"AndroidUpdates");
   web.setWebViewClient(new WebViewClient(){
    @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){return external(request.getUrl());}
@@ -40,21 +42,27 @@ public class MainActivity extends Activity {
   if(state!=null)web.restoreState(state);else web.loadUrl("file:///android_asset/www/editor.html");
  }
  public class UpdateBridge {
-  private volatile boolean checking=false;
-  @JavascriptInterface public String getVersion(){try{android.content.pm.PackageInfo p=getPackageManager().getPackageInfo(getPackageName(),0);return new JSONObject().put("version",p.versionName).put("versionCode",p.versionCode).toString();}catch(Exception e){return "{}";}}
-  @JavascriptInterface public synchronized void check(){if(checking)return;checking=true;new Thread(new Runnable(){public void run(){HttpURLConnection connection=null;String response;
-   try{connection=(HttpURLConnection)new URL("https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/versions.json?check="+System.currentTimeMillis()).openConnection();connection.setConnectTimeout(8000);connection.setReadTimeout(8000);connection.setInstanceFollowRedirects(false);connection.setUseCaches(false);if(connection.getResponseCode()!=200)throw new java.io.IOException();InputStream in=connection.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream();try{byte[] buffer=new byte[4096];int n;while((n=in.read(buffer))!=-1){if(out.size()+n>1048576)throw new java.io.IOException();out.write(buffer,0,n);}}finally{in.close();}response=new String(out.toByteArray(),"UTF-8");new JSONObject(response);
-   }catch(Exception error){response="{\"error\":\"Не удалось проверить GitHub. Проверьте интернет и попробуйте позже.\"}";}finally{if(connection!=null)connection.disconnect();checking=false;}
-   final String json=response;runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentUpdateResult&&window.fragmentUpdateResult(JSON.parse("+JSONObject.quote(json)+"))",null);}});
-  }}).start();}
-  @JavascriptInterface public void openDownload(final String value){try{final Uri uri=Uri.parse(value);if(!"https".equals(uri.getScheme())||!"raw.githubusercontent.com".equals(uri.getHost())||uri.getUserInfo()!=null||!uri.getPath().matches("/nicolenkoe/fragment-logo-editor/(gh-pages|[a-f0-9]{7,40})/downloads/[a-zA-Z0-9_./-]+\\.apk")||uri.getPath().contains(".."))return;runOnUiThread(new Runnable(){public void run(){try{startActivity(new Intent(Intent.ACTION_VIEW,uri));}catch(Exception e){Toast.makeText(MainActivity.this,"Не удалось открыть скачивание",Toast.LENGTH_LONG).show();}}});}catch(Exception ignored){}}
+  @JavascriptInterface public String getVersion(){return updates.settings();}
+  @JavascriptInterface public String getSettings(){return updates.settings();}
+  @JavascriptInterface public String getState(){return updates.snapshot();}
+  @JavascriptInterface public void check(boolean manual){updates.check(manual);}
+  @JavascriptInterface public void setStableOnly(boolean value){updates.setStableOnly(value);}
+  @JavascriptInterface public void later(){updates.later();}
+  @JavascriptInterface public void install(){updates.install();}
  }
+ private void launchUpdateInstall(java.io.File file){
+  if(android.os.Build.VERSION.SDK_INT>=26&&!getPackageManager().canRequestPackageInstalls()){installAfterPermission=file;try{startActivityForResult(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+getPackageName())),102);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Разрешите установку обновлений в настройках Android",Toast.LENGTH_LONG).show();}return;}
+  Uri uri=Uri.parse("content://"+getPackageName()+".updates/"+file.getName());Intent intent=new Intent(Intent.ACTION_INSTALL_PACKAGE);intent.setDataAndType(uri,"application/vnd.android.package-archive");intent.setClipData(android.content.ClipData.newRawUri("APK",uri));intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);try{startActivityForResult(intent,103);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Не удалось открыть установщик Android",Toast.LENGTH_LONG).show();}
+ }
+ @Override protected void onResume(){super.onResume();if(updates!=null)updates.check(false);}
  public class FileBridge {
   @JavascriptInterface public void saveBase64(final String name,final String data,final String mime){
    new Thread(new Runnable(){public void run(){try{final byte[] bytes=Base64.decode(data,Base64.DEFAULT);runOnUiThread(new Runnable(){public void run(){pendingFile=bytes;Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);intent.addCategory(Intent.CATEGORY_OPENABLE);intent.setType(mime==null||mime.isEmpty()?"application/octet-stream":mime);intent.putExtra(Intent.EXTRA_TITLE,name);try{startActivityForResult(intent,SAVE_FILE);}catch(Exception error){pendingFile=null;Toast.makeText(MainActivity.this,"Не удалось открыть сохранение файла",Toast.LENGTH_LONG).show();}}});}catch(Exception error){runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Не удалось подготовить файл",Toast.LENGTH_LONG).show();}});}}}).start();
   }
  }
  @Override protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);
+  if(request==102){java.io.File f=installAfterPermission;installAfterPermission=null;if(android.os.Build.VERSION.SDK_INT>=26&&getPackageManager().canRequestPackageInstalls()&&f!=null)updates.install();else{updates.installerFinished();Toast.makeText(this,"APK сохранён. Установку можно разрешить позже.",Toast.LENGTH_LONG).show();}return;}
+  if(request==103){updates.installerFinished();return;}
   if(request==OPEN_FILE&&chooser!=null){chooser.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result,data));chooser=null;}
   if(request==SAVE_FILE){final byte[] bytes=pendingFile;pendingFile=null;if(result==RESULT_OK&&data!=null&&data.getData()!=null&&bytes!=null){final Uri uri=data.getData();new Thread(new Runnable(){public void run(){try{OutputStream output=getContentResolver().openOutputStream(uri);if(output==null)throw new java.io.IOException();try{output.write(bytes);}finally{output.close();}runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Файл сохранён",Toast.LENGTH_SHORT).show();}});}catch(Exception error){runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Не удалось сохранить файл",Toast.LENGTH_LONG).show();}});}}}).start();}}
  }

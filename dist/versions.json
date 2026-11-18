@@ -2,6 +2,26 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.1",
+      "versionCode": 9,
+      "channel": "testing",
+      "date": "2026-11-18",
+      "publishedAt": "2026-11-18T10:26:45Z",
+      "notes": [
+        "Автоматическая загрузка проверенного APK при запуске и возвращении.",
+        "Все каналы по умолчанию; настройка «Только стабильные версии».",
+        "Проверка размера, SHA-256, пакета, версии и подписи; повторное использование APK."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.1/fragment-editor.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.1/fragment-source.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.1/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.0",
       "versionCode": 8,
       "channel": "testing",
@@ -12,7 +32,14 @@
         "Тестовые обновления можно включить отдельно."
       ],
       "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/fragment-editor.apk",
-      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/fragment-source.zip"
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/fragment-source.zip",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ],
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.0/update.json",
+      "publishedAt": "2026-11-17T11:44:19Z"
     },
     {
       "version": "1.2.4",
@@ -25,7 +52,14 @@
         "Повторное разделение без переключателя источника."
       ],
       "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/440311d39ef2a139b569ab67c6c85a8ea9a4f009/downloads/fragment-editor.apk",
-      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/440311d39ef2a139b569ab67c6c85a8ea9a4f009/downloads/fragment-source.zip"
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/440311d39ef2a139b569ab67c6c85a8ea9a4f009/downloads/fragment-source.zip",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ],
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.2.4/update.json",
+      "publishedAt": "2026-11-17T03:48:55Z"
     },
     {
       "version": "1.2.2",
@@ -37,7 +71,14 @@
         "Общая рамка нескольких выбранных элементов."
       ],
       "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/53705c7368df22d404920bc887270bf13e912f4c/downloads/fragment-editor.apk",
-      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/53705c7368df22d404920bc887270bf13e912f4c/downloads/fragment-source.zip"
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/53705c7368df22d404920bc887270bf13e912f4c/downloads/fragment-source.zip",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ],
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.2.2/update.json",
+      "publishedAt": "2026-11-17T03:39:21Z"
     },
     {
       "version": "1.2.1",
@@ -49,7 +90,14 @@
         "Сохранение преобразований при разборе группы."
       ],
       "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/1a889d8993806a437e256118815173d78fb4f77c/downloads/fragment-editor.apk",
-      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/1a889d8993806a437e256118815173d78fb4f77c/downloads/fragment-source.zip"
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/1a889d8993806a437e256118815173d78fb4f77c/downloads/fragment-source.zip",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ],
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.2.1/update.json",
+      "publishedAt": "2026-11-17T03:35:37Z"
     },
     {
       "version": "1.2",
@@ -62,7 +110,14 @@
         "Интерфейс проверен в браузере на шести размерах окна."
       ],
       "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/832eb2971dea731ea2c4e74ad6285486c17c25ed/downloads/fragment-editor.apk",
-      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/832eb2971dea731ea2c4e74ad6285486c17c25ed/downloads/fragment-source.zip"
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/832eb2971dea731ea2c4e74ad6285486c17c25ed/downloads/fragment-source.zip",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ],
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.2/update.json",
+      "publishedAt": "2026-11-17T02:31:39Z"
     }
   ]
 }
