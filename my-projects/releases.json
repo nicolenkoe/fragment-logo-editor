@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 14,
+      "versionName": "1.13",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.13.apk",
+      "sha256": "cdcd148d0157d9a41b55d6528ce7390b690c4847f74c6725d030d699c8db7973",
+      "sizeBytes": 1082446,
+      "notes": "Обновлена ссылка сайта Хвост под контролем на адрес в enduro-club-downloads с параметром v=57. Новый адрес используется для открытия, копирования и перехода к скачиванию, включая сохранённые списки и обновление GitHub. Остальные функции и три вида списка сохранены.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 13,
       "versionName": "1.12",
       "channel": "testing",
@@ -148,7 +161,7 @@
     {
       "name": "hvost-pod-kontrolem-downloads",
       "displayName": "Хвост под контролем",
-      "site": "https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/versions/"
+      "site": "https://nicolenkoe.github.io/enduro-club-downloads/hvost-pod-kontrolem/?v=57"
     }
   ]
 }

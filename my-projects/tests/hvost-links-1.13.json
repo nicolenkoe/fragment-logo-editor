@@ -1,0 +1,10 @@
+{
+  "site": "https://nicolenkoe.github.io/enduro-club-downloads/hvost-pod-kontrolem/?v=57",
+  "siteHTTP": 200,
+  "siteAPKVersion": "0.57",
+  "repository": "https://github.com/nicolenkoe/hvost-pod-kontrolem-downloads",
+  "codex": "https://chatgpt.com/local/6af50efb-cc3c-8191-a02e-302d0b3ea049",
+  "standaloneSiteAPKVersion": "0.53",
+  "webSiteAndCopyTests": "passed",
+  "nativeCacheOverride": "ProjectThreads.site resolves both Hvost aliases at render time"
+}
