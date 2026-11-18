@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 12,
+      "versionName": "1.11",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.11.apk",
+      "sha256": "571a598fbd8c7e56613a4a6d9ea32d6eeaaba04bd10472f57db331fe123f944d",
+      "sizeBytes": 1082446,
+      "notes": "Обновлены оригинальные логотипы из опубликованных APK: CamaraD, Enduro Club, Фрагмент, Хвост и запись экрана. Значки синхронизированы в Android и веб-каталоге; обновлены адреса ресурсов для сброса браузерного кеша. Расположение кнопок и остальные функции сохранены.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 11,
       "versionName": "1.10",
       "channel": "testing",
