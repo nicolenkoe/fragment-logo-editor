@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 17,
+      "versionName": "1.16",
+      "channel": "testing",
+      "releasedAt": "2026-11-19",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.16.apk",
+      "sha256": "daff40839a60cd336bddf8e9ca18b76aede7f3cc1802f438167cf6bf90d739ed",
+      "sizeBytes": 1135694,
+      "notes": "Возвращён утверждённый компактный вид при увеличенном системном шрифте: кнопки остаются справа, Codex и GitHub рядом с логотипом, без принудительного переноса блоков вниз. Высота названия остаётся адаптивной; размеры текста и кнопок ограничены для сохранения компактности. Сохранены три вида списка, оригинальный логотип Хвоста 0.59 и все ссылки.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 16,
       "versionName": "1.15",
       "channel": "testing",
