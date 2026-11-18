@@ -1,5 +1,6 @@
 'use strict';
 let appliedScope=null;
+const checkpointBeforeScope=checkpoint;checkpoint=function(...args){checkpointBeforeScope(...args);lastAutomaticTarget=null};
 function scopeBounds(source){if(source.kind==='layer'){const l=source.parent;return layerBounds(l)}return{...source.rect}}
 function currentScope(){
  if(selection&&mode==='select')return selectionGeometry().bounds;
@@ -37,5 +38,5 @@ function applySceneArea(source,result){
  if(!result.groups.length){toast('В выделенной области объекты не найдены.');return false}
  const remaining=layers.map(l=>eraseAreaFromLayer(l,source.shape.points)).filter(Boolean),{created,cleaned}=makeAutomaticParts(source,result);
  if(remaining.length+created.length>150){toast('Слишком много деталей. Уменьшите чувствительность.');return false}
- checkpoint();const patch=off(source.rect.w,source.rect.h);source.image.data.set(cleaned);patch.getContext('2d').putImageData(source.image,0,0);const c=bc();c.save();pathPolygon(c,source.shape.points);c.clip();c.clearRect(source.rect.x,source.rect.y,source.rect.w,source.rect.h);c.drawImage(patch,source.rect.x,source.rect.y);c.restore();layers=remaining.concat(created);seq+=created.length;active=null;selected.clear();selection=null;pending=null;setMode('move');ui();$('splitResult').textContent='Объектов: '+created.length;$('status').textContent='В выделенной области создано объектов: '+created.length;toast('Область разделена. Детали снаружи сохранены.');return true;
+ checkpoint();const patch=off(source.rect.w,source.rect.h);source.image.data.set(cleaned);patch.getContext('2d').putImageData(source.image,0,0);const c=bc();c.save();pathPolygon(c,source.shape.points);c.clip();c.clearRect(source.rect.x,source.rect.y,source.rect.w,source.rect.h);c.drawImage(patch,source.rect.x,source.rect.y);c.restore();layers=remaining.concat(created);seq+=created.length;active=created.length===1?created[0].id:null;selected=new Set(active===null?[]:[active]);selection=null;pending=null;setMode('move');ui();$('splitResult').textContent='Объектов: '+created.length;$('status').textContent='В выделенной области создано объектов: '+created.length;toast('Область разделена. Детали снаружи сохранены.');return true;
 }
