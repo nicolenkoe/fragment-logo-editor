@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 10,
+      "versionName": "1.9",
+      "channel": "testing",
+      "releasedAt": "2026-11-18",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.9.apk",
+      "sha256": "40f0a3c05be75de123f56c0a40138d478c06ffa4f291fb11f066df47e8e98e61",
+      "sizeBytes": 1598542,
+      "notes": "Выбранный компактный тёмный дизайн: шесть приложений с оригинальными значками. У Хвоста настоящая иконка из APK — собака в рамке камеры. Лупа раскрывает только поиск и фильтры; троеточие справа — отдельные настройки. В Android ссылки по умолчанию открываются в Google Chrome; в настройках можно выбрать системный браузер. Если Chrome отсутствует или выключен, предлагается выбор браузера. Сохранены все ветки Codex, копирование, долгий выбор браузера и система обновлений 1.6.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 9,
       "versionName": "1.8",
       "channel": "testing",

@@ -1,0 +1,17 @@
+{
+  "version": "1.9",
+  "versionCode": 10,
+  "sha256": "40f0a3c05be75de123f56c0a40138d478c06ffa4f291fb11f066df47e8e98e61",
+  "sizeBytes": 1598542,
+  "webDesignQA": "passed",
+  "webInteractions": "passed",
+  "widths": [
+    320,
+    390,
+    768
+  ],
+  "updaterSourceUnchangedFrom1_8": true,
+  "sameSigningCertificate": true,
+  "originalDogLogo": true,
+  "nativeDeviceQA": "not_run_no_device"
+}

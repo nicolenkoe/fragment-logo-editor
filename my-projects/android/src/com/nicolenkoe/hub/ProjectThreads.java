@@ -16,4 +16,5 @@ public final class ProjectThreads {
   DEFAULTS=java.util.Collections.unmodifiableMap(links);
  }
  public static String url(String name){String value=DEFAULTS.get(name.toLowerCase(java.util.Locale.ROOT));return value==null?"":value;}
+ public static String title(String name){String key=name.toLowerCase(java.util.Locale.ROOT);if(key.contains("camarad"))return "CamaraD";if(key.startsWith("enduro"))return "Enduro Club";if(key.equals("fragment-logo-editor"))return "Фрагмент";if(key.startsWith("hvost"))return "Хвост под контролем";if(key.equals("screen-recorder-downloads"))return "Запись экрана";if(key.equals("my-projects"))return "Мои проекты";return name;}
 }
