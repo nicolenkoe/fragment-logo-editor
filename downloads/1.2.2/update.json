@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "packageName": "ru.fragment.logoeditor",
+  "version": "1.2.2",
+  "versionCode": 5,
+  "minSdk": 23,
+  "abis": [
+    "universal"
+  ],
+  "size": 28929164,
+  "sha256": "57c106938a54d933244a5c74a57d89cf979ebb14519fb0b281d239572b78ba0b",
+  "signerSha256": [
+    "face17525fbf33ace89b2c66a4aa5d7914938aaca74257e74e2965bd5d617ffc"
+  ]
+}
