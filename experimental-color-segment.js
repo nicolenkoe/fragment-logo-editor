@@ -11,7 +11,7 @@ function segmentObjects(image,options={}){
  }else bg=[0,0,0,0];
  const mask=new Uint8Array(n),labels=new Int32Array(n);let foreground=0;
  for(let p=0;p<n;p++){let i=p*4;if(a[i+3]>20&&(transparent||Math.hypot(a[i]-bg[0],a[i+1]-bg[1],a[i+2]-bg[2])>tolerance)){mask[p]=1;foreground++}}
- if(foreground>n*.75)throw Error('Фон и объекты слишком похожи. Измените чувствительность или выделите область вручную.');
+ if(!transparent&&foreground>n*.75)throw Error('Фон и объекты слишком похожи. Измените чувствительность или выделите область вручную.');
  // Optional color regions: build a bounded palette from substantial foreground
  // colors, then assign edge pixels to the nearest palette entry. This avoids
  // turning antialiasing into hundreds of narrow color fragments.
