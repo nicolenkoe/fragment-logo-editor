@@ -1,0 +1,236 @@
+{
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "pixel_format": "yuv420p",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sample_rate": "48000",
+    "audio_bit_rate": "92749",
+    "duration": "383.920000"
+  },
+  "full_decode": {
+    "passed": true,
+    "stderr": ""
+  },
+  "black_frames": {
+    "passed": true,
+    "intervals": []
+  },
+  "encoded_audio_measurement": {
+    "input_i": "-16.05",
+    "input_tp": "-1.01",
+    "input_lra": "3.30",
+    "input_thresh": "-26.48",
+    "output_i": "-16.05",
+    "output_tp": "-1.50",
+    "output_lra": "3.20",
+    "output_thresh": "-26.48",
+    "normalization_type": "dynamic",
+    "target_offset": "0.05"
+  },
+  "mp4_atoms": [
+    {
+      "kind": "ftyp",
+      "offset": 0
+    },
+    {
+      "kind": "moov",
+      "offset": 32
+    },
+    {
+      "kind": "free",
+      "offset": 296003
+    },
+    {
+      "kind": "mdat",
+      "offset": 296011
+    }
+  ],
+  "synchronization": {
+    "action_count": 62,
+    "maximum_difference_seconds": 0.27,
+    "over_one_second": [],
+    "method": "Video pauses and movements aligned to Silero word timestamps; speech tempo and pitch unchanged"
+  },
+  "application_states": {
+    "step_count": 24,
+    "all_layout_checks_passed": true,
+    "javascript_errors": []
+  },
+  "subtitles": {
+    "cue_count": 134,
+    "last_end": 383.172,
+    "passed": true
+  },
+  "sha256": "36c82d051ece1e3ea07abf9ab04c9c484c3c2c694c97c68178fb51fef624cda6",
+  "file_size": 23849195,
+  "visual_review": {
+    "step_frames_reviewed": 24,
+    "action_frames_reviewed": 62,
+    "dialogs_and_transitions_reviewed": true
+  },
+  "browser": {
+    "loadingPoster": true,
+    "first": {
+      "time": 0.526413,
+      "muted": false,
+      "volume": 1,
+      "paused": false,
+      "scrollY": 123,
+      "coverVisible": false,
+      "tracks": 1
+    },
+    "seek": true,
+    "subtitles": [
+      {
+        "text": "фигур. Счётчик\nпоказывает\nшестнадцать частей.",
+        "line": 72,
+        "position": 87.5,
+        "size": 22
+      }
+    ],
+    "replay": true,
+    "appDialog": true,
+    "layout": [
+      {
+        "width": 1440,
+        "height": 900,
+        "rect": {
+          "x": 170,
+          "y": 97.4375,
+          "w": 1100,
+          "h": 705.125
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            1440,
+            900
+          ],
+          "issues": []
+        }
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "rect": {
+          "x": 124.4375,
+          "y": 26.8125,
+          "w": 1031.109375,
+          "h": 666.359375
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "issues": []
+        }
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "rect": {
+          "x": 30.71875,
+          "y": 70.09375,
+          "w": 962.546875,
+          "h": 627.796875
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            1024,
+            768
+          ],
+          "issues": []
+        }
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "rect": {
+          "x": 11.703125,
+          "y": 255.203125,
+          "w": 366.59375,
+          "h": 333.578125
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            390,
+            844
+          ],
+          "issues": []
+        }
+      },
+      {
+        "width": 375,
+        "height": 667,
+        "rect": {
+          "x": 11.25,
+          "y": 170.671875,
+          "w": 352.5,
+          "h": 325.65625
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            375,
+            667
+          ],
+          "issues": []
+        }
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "rect": {
+          "x": 199.78125,
+          "y": 26.8125,
+          "w": 444.4375,
+          "h": 336.359375
+        },
+        "inside": true,
+        "layout": {
+          "ok": true,
+          "viewport": [
+            844,
+            390
+          ],
+          "issues": []
+        }
+      }
+    ],
+    "errors": []
+  },
+  "voice": {
+    "model": "v4_ru.pt",
+    "model_url": "https://models.silero.ai/models/tts/ru/v4_ru.pt",
+    "model_sha256": "896ab96347d5bd781ab97959d4fd6885620e5aab52405d3445626eb7c1414b00",
+    "speaker": "kseniya",
+    "language": "ru",
+    "sample_rate": 48000,
+    "put_accent": true,
+    "put_yo": true,
+    "return_ts": true,
+    "speech_rate_and_pitch_processing": false
+  },
+  "speech_recognition": {
+    "full_final_aac_transcribed": true,
+    "engine": "faster-whisper small multilingual",
+    "language": "ru",
+    "ambiguous_phrases_regenerated_and_verified": true,
+    "separately_checked_final_phrases": [
+      "area",
+      "color"
+    ]
+  }
+}
