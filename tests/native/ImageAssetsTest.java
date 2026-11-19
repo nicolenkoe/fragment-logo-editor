@@ -1,0 +1,4 @@
+package ru.fragment.logoeditor;
+public class ImageAssetsTest {public static void main(String[]args){
+ String[]bad={null,"../private.png","assets/../private.png","assets/%2e%2e/private.png","assets/./x.png","assets//x.png","assets/x.png?x=y","assets/x.png#x","assets/x.js","https://example.com/a.png","file:///etc/private.png","assets/x\\a.png"};for(String s:bad)if(ImageAssets.path(s)!=null)throw new AssertionError("Accepted invalid path: "+s);
+ if(!"www/assets/enduro-logo.png".equals(ImageAssets.path("assets/enduro-logo.png")))throw new AssertionError();if(!"www/assets/enduro-logo.png".equals(ImageAssets.path("file:///android_asset/www/assets/enduro-logo.png")))throw new AssertionError();if(!"image/svg+xml".equals(ImageAssets.mime("assets/test.svg")))throw new AssertionError();System.out.println("PASS: only packaged images, correct MIME, traversal and external paths denied");}}

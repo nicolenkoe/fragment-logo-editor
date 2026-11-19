@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
    @Override public boolean onShowFileChooser(WebView view,ValueCallback<Uri[]> callback,FileChooserParams params){
     if(chooser!=null)chooser.onReceiveValue(null);chooser=callback;
     try{Intent intent=params.createIntent();intent.addCategory(Intent.CATEGORY_OPENABLE);intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);startActivityForResult(intent,OPEN_FILE);return true;}
-    catch(Exception error){chooser=null;return false;}
+    catch(Exception error){chooser=null;android.util.Log.w("Fragment","Cannot open file chooser",error);Toast.makeText(MainActivity.this,"Не удалось открыть выбор файла",Toast.LENGTH_SHORT).show();return false;}
    }
   });
   if(state!=null)web.restoreState(state);else web.loadUrl("file:///android_asset/www/editor.html");
@@ -56,6 +56,13 @@ public class MainActivity extends Activity {
  }
  @Override protected void onResume(){super.onResume();if(updates!=null)updates.check(false);}
  public class FileBridge {
+  @JavascriptInterface public String imageAsset(String input){
+   String path=ImageAssets.path(input);if(path==null)return null;
+   try{InputStream in=getAssets().open(path);ByteArrayOutputStream out=new ByteArrayOutputStream();try{byte[] buffer=new byte[16384];int count;while((count=in.read(buffer))!=-1){if(out.size()+count>30*1024*1024)return null;out.write(buffer,0,count);}}finally{in.close();}
+    return "data:"+ImageAssets.mime(path)+";base64,"+Base64.encodeToString(out.toByteArray(),Base64.NO_WRAP);
+   }catch(Exception error){android.util.Log.w("Fragment","Cannot load packaged image",error);return null;}
+  }
+
   @JavascriptInterface public void saveBase64(final String name,final String data,final String mime){
    new Thread(new Runnable(){public void run(){try{final byte[] bytes=Base64.decode(data,Base64.DEFAULT);runOnUiThread(new Runnable(){public void run(){pendingFile=bytes;Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);intent.addCategory(Intent.CATEGORY_OPENABLE);intent.setType(mime==null||mime.isEmpty()?"application/octet-stream":mime);intent.putExtra(Intent.EXTRA_TITLE,name);try{startActivityForResult(intent,SAVE_FILE);}catch(Exception error){pendingFile=null;Toast.makeText(MainActivity.this,"Не удалось открыть сохранение файла",Toast.LENGTH_LONG).show();}}});}catch(Exception error){runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Не удалось подготовить файл",Toast.LENGTH_LONG).show();}});}}}).start();
   }
