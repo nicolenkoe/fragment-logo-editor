@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 18,
+      "versionName": "1.17",
+      "channel": "testing",
+      "releasedAt": "2026-11-19",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.17.apk",
+      "sha256": "059676834c192a900cd28ef726b0308abee0c410bbf00951af35cd70f65fd30b",
+      "sizeBytes": 1135694,
+      "notes": "GitHub размещён по центру свободного промежутка между Codex и кнопкой Запуск во всех трёх видах списка. Положение автоматически адаптируется к ширине экрана. Компактность, логотипы и остальные функции сохранены.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 17,
       "versionName": "1.16",
       "channel": "testing",

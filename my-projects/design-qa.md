@@ -13,3 +13,5 @@ Version 1.14: inspected tests/implementation-1.14-mode-3.png. Added English GitH
 Version 1.15: accessibility fix for Android fixed title/card heights; original Hvost 0.59 launcher logo extracted. Web regression passed. Android large-font behavior requires physical-device confirmation; compile/sign verification only.
 
 Version 1.16: restored user-approved compact arrangement, screenshot approved in conversation. Three browser layout modes and four widths pass; original logo retained. Native large font no longer forces controls and links into separate vertical blocks; card text sizes bounded for density. Android device verification remains pending.
+
+Version 1.17: GitHub centered in available gap between Codex and Launch. Range-based browser assertions pass within 1.5 CSS px for three layouts at 320/360/390/768. Preview provided as external GitHub link before version publication. Native compile/signature passed; device verification pending.
