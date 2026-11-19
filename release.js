@@ -1,6 +1,6 @@
 (function(root){
 'use strict';
-const CURRENT={version:'1.3.2',versionCode:10,channel:'testing'};
+const CURRENT={version:'1.3.3',versionCode:11,channel:'testing'};
 const MANIFEST_URL='https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/versions.json';
 function compare(a,b){const x=a.split('.').map(Number),y=b.split('.').map(Number);for(let i=0;i<3;i++){const d=(x[i]||0)-(y[i]||0);if(d)return Math.sign(d)}return 0}
 function trustedDownload(value,extension){try{const u=new URL(value);return u.protocol==='https:'&&u.hostname==='raw.githubusercontent.com'&&!u.username&&!u.password&&!u.port&&/^\/nicolenkoe\/fragment-logo-editor\/(gh-pages|[a-f0-9]{7,40})\/downloads\/[a-zA-Z0-9_./-]+$/.test(u.pathname)&&u.pathname.endsWith(extension)?u.href:null}catch{return null}}
