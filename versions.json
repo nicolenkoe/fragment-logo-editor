@@ -2,6 +2,26 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.4",
+      "versionCode": 12,
+      "channel": "testing",
+      "date": "2026-11-21",
+      "publishedAt": "2026-11-21T09:00:00Z",
+      "notes": [
+        "Текущая версия постоянно видна под названием редактора в браузере и APK.",
+        "В Android отображается номер установленной сборки.",
+        "Номер версии включён в имена скачиваемых APK и архива исходников."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.4/fragment-editor-1.3.4.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.4/fragment-source-1.3.4.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.4/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.3",
       "versionCode": 11,
       "channel": "testing",
