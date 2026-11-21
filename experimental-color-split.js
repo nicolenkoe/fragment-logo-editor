@@ -1,5 +1,5 @@
 'use strict';
-let lastAutomaticTarget=null;
+let lastAutomaticTarget=null,lastAutomaticBase=null,lastAutomaticImage=null;
 function hasTransparentBackground(image){for(let p=3;p<image.data.length;p+=4)if(image.data[p]<20)return true;return false}
 function automaticSource(){
  const scope=selection&&mode==='select'?'base':layers.length?'layer':'base';
@@ -32,7 +32,7 @@ function updateAutomaticTarget(){
  $('split').disabled=automaticBusy||!available;
  $('split').dataset.tooltip=!available?'Выберите один объект на холсте или в списке слоёв для дальнейшего разделения.':baseArea?'Разделить выделенную область исходного фото.':layers.length?'Разделить выбранный объект; остальные объекты останутся на месте.':'Разделить загруженное изображение на объекты и сразу заполнить фон.';
  const key=baseArea?'area:'+JSON.stringify(selection):!layers.length?'base':one?'layer:'+current().id:'none';
- if(lastAutomaticTarget===key)return;lastAutomaticTarget=key;
+ const image=one?current().img:base;if(lastAutomaticTarget===key&&lastAutomaticBase===base&&lastAutomaticImage===image)return;lastAutomaticTarget=key;lastAutomaticBase=base;lastAutomaticImage=image;
  if(typeof clearSplitPreview==='function')clearSplitPreview();
  if(!automaticBusy&&available&&typeof scheduleSplitPreview==='function')queueMicrotask(()=>{if(lastAutomaticTarget===key&&!automaticBusy)scheduleSplitPreview()});
 }

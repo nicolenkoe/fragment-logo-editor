@@ -2,6 +2,25 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.7",
+      "versionCode": 15,
+      "channel": "testing",
+      "date": "2026-11-21",
+      "publishedAt": "2026-11-21T19:08:19Z",
+      "notes": [
+        "После медленной загрузки изображения предпросмотр обязательно пересчитывается, даже если размер картинки не изменился.",
+        "Включены исправления подсказок, прозрачного выбора и выделения области после разделения из версии 1.3.6."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.7/fragment-editor-1.3.7.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.7/fragment-source-1.3.7.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.7/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.6",
       "versionCode": 14,
       "channel": "testing",
