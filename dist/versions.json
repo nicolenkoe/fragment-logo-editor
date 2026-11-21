@@ -2,6 +2,26 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.10",
+      "versionCode": 18,
+      "channel": "experimental",
+      "date": "2026-11-22",
+      "publishedAt": "2026-11-21T22:06:27Z",
+      "notes": [
+        "Убрана вложенная навигация в блоке разделения: оба ползунка видны вместе и не перекрываются стрелками.",
+        "Убрано пустое место сверху панелей, вкладки и настройки подняты выше.",
+        "Сохранены плавающие кнопки, пять дизайнов, отмена/возврат и сохранение с выбором формата и веса файла."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.10/fragment-editor-1.3.10.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.10/fragment-source-1.3.10.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.10/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.9",
       "versionCode": 17,
       "channel": "experimental",
