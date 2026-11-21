@@ -1,0 +1,44 @@
+{
+  "CamaraD-downloads": {
+    "version": "0.26",
+    "apk": "https://raw.githubusercontent.com/nicolenkoe/CamaraD-downloads/main/site/downloads/CamaraD-0.26-test.apk",
+    "desktop": "https://raw.githubusercontent.com/nicolenkoe/CamaraD-downloads/main/site/downloads/CamaraD-0.26-test-PC.zip",
+    "code": 26,
+    "date": "2026-11-21"
+  },
+  "enduro-club-downloads": {
+    "version": "0.15.71",
+    "apk": "https://nicolenkoe.github.io/enduro-club-downloads/Enduro-0.15.71.apk",
+    "desktop": "",
+    "code": 93,
+    "date": "2026-11-21"
+  },
+  "fragment-logo-editor": {
+    "version": "1.3.11",
+    "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.11/fragment-editor-1.3.11.apk",
+    "desktop": "",
+    "code": 19,
+    "date": "2026-11-21T22:15:36Z"
+  },
+  "hvost-pod-kontrolem": {
+    "version": "0.67",
+    "apk": "https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/HvostPodKontrolem-0.67.apk",
+    "desktop": "",
+    "code": 67,
+    "date": ""
+  },
+  "screen-recorder-downloads": {
+    "version": "0.1.2",
+    "apk": "https://github.com/nicolenkoe/screen-recorder-downloads/releases/download/android-0.1.2-experimental/ScreenRecorder-Android-0.1.2-experimental.apk",
+    "desktop": "https://github.com/nicolenkoe/screen-recorder-downloads/releases/download/windows-3.1.0/ScreenRecorder-Windows-3.1.0.exe",
+    "code": 0,
+    "date": "2026-11-21T19:33:11Z"
+  },
+  "my-projects": {
+    "version": "1.19",
+    "apk": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.19.apk",
+    "desktop": "",
+    "code": 20,
+    "date": "2026-11-21"
+  }
+}
