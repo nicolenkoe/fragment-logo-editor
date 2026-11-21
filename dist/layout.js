@@ -53,4 +53,23 @@ window.checkEditorLayout=function(){const root=document.documentElement,issues=[
  return{ok:issues.length===0,viewport:[window.innerWidth,window.innerHeight],issues};
 };
 const layoutObserver=new ResizeObserver(scheduleLayout);for(const el of [$('stage'),document.body,...fitPanels.map(s=>s.panel),$('layers')])layoutObserver.observe(el);
-window.addEventListener('resize',scheduleLayout);document.fonts?.ready.then(scheduleLayout);refreshLayout();
+// Resize before the next paint, including Android WebView's visual viewport.
+// Only view framing changes; document pixels, layers and selection stay intact.
+let viewportSize={width:innerWidth,height:innerHeight};
+function resizeEditorViewport(){
+ const width=innerWidth,height=innerHeight;
+ const turned=(width>height)!==(viewportSize.width>viewportSize.height);
+ viewportSize={width,height};
+ document.documentElement.style.setProperty('--editor-height',height+'px');
+ if(turned&&typeof viewState!=='undefined'){
+  cancelCanvasGesture();viewState.zoom=1;viewState.panX=viewState.panY=0;
+ }
+ window.FragmentFloatingControls?.layout();
+ cancelAnimationFrame(layoutFrame);refreshLayout();
+ if(turned)render();
+}
+window.FragmentViewport={resize:resizeEditorViewport};
+const viewportObserver=new ResizeObserver(()=>{cancelAnimationFrame(layoutFrame);refreshLayout()});viewportObserver.observe($('stage'));
+window.addEventListener('resize',resizeEditorViewport);
+window.visualViewport?.addEventListener('resize',resizeEditorViewport);
+document.fonts?.ready.then(resizeEditorViewport);resizeEditorViewport();

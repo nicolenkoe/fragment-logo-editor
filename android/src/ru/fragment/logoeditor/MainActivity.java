@@ -24,7 +24,14 @@ public class MainActivity extends Activity {
  @Override public void onCreate(Bundle state){
   super.onCreate(state);getWindow().setStatusBarColor(Color.rgb(250,251,247));getWindow().setNavigationBarColor(Color.rgb(238,239,235));
   int flags=android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;if(android.os.Build.VERSION.SDK_INT>=26)flags|=android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;getWindow().getDecorView().setSystemUiVisibility(flags);
-  web=new WebView(this);setContentView(web);WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+  web=new WebView(this){
+   @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
+    super.onSizeChanged(w,h,oldw,oldh);
+    if(w>0&&h>0&&(w!=oldw||h!=oldh))post(new Runnable(){public void run(){
+     evaluateJavascript("window.FragmentViewport&&window.FragmentViewport.resize()",null);invalidate();
+    }});
+   }
+  };setContentView(web);WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
   updates=new UpdateManager(this,new UpdateManager.Host(){public void state(final JSONObject value){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentNativeUpdate&&window.fragmentNativeUpdate("+value.toString()+")",null);}});}public void install(final java.io.File file){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())launchUpdateInstall(file);}});}});
   web.addJavascriptInterface(new FileBridge(),"AndroidFiles");web.addJavascriptInterface(new UpdateBridge(),"AndroidUpdates");
   web.setWebViewClient(new WebViewClient(){
@@ -53,6 +60,9 @@ public class MainActivity extends Activity {
  private void launchUpdateInstall(java.io.File file){
   if(android.os.Build.VERSION.SDK_INT>=26&&!getPackageManager().canRequestPackageInstalls()){installAfterPermission=file;try{startActivityForResult(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+getPackageName())),102);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Разрешите установку обновлений в настройках Android",Toast.LENGTH_LONG).show();}return;}
   Uri uri=Uri.parse("content://"+getPackageName()+".updates/"+file.getName());Intent intent=new Intent(Intent.ACTION_INSTALL_PACKAGE);intent.setDataAndType(uri,"application/vnd.android.package-archive");intent.setClipData(android.content.ClipData.newRawUri("APK",uri));intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);try{startActivityForResult(intent,103);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Не удалось открыть установщик Android",Toast.LENGTH_LONG).show();}
+ }
+ @Override public void onConfigurationChanged(android.content.res.Configuration configuration){
+  super.onConfigurationChanged(configuration);if(web!=null){web.requestLayout();web.invalidate();}
  }
  @Override protected void onResume(){super.onResume();if(updates!=null)updates.check(false);}
  public class FileBridge {
