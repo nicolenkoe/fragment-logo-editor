@@ -22,6 +22,8 @@ function segmentObjects(image,options={}){
  if(sensitivity===100)return{groups:original.sort((a,b)=>a.y-b.y||a.x-b.x),labels,background:bg};
  function bind(a,b,releaseAt){edges.push({a:a.ids[0]-1,b:b.ids[0]-1,releaseAt})}
  function union(a,b){let x=Math.min(a.x,b.x),y=Math.min(a.y,b.y);return{ids:a.ids.concat(b.ids),x,y,w:Math.max(a.x+a.w,b.x+b.w)-x,h:Math.max(a.y+a.h,b.y+b.h)-y,area:a.area+b.area}}
+ // At zero retain all foreground islands as one movable, transparent object.
+ if(sensitivity===0)return{groups:original.length?[original.reduce(union)]:[],labels,background:bg};
  // Keep tiny strokes until letters and words have been assembled. A global
  // image-area cutoff discarded narrow letters on large uploaded images.
  const tiny=parts.filter(p=>p.area<=8).sort((a,b)=>a.area-b.area),attached=new Set();
