@@ -1,6 +1,6 @@
 /* Two independent refinements: background-separated groups, then color regions. */
 (function(root){
-let raw;if(typeof module==='object'&&module.exports)raw=require('./experimental-color-segment.js');else{if(typeof importScripts==='function')importScripts('experimental-color-segment.js?v=color-3');raw=root.segmentObjects}
+let raw;if(typeof module==='object'&&module.exports)raw=require('./experimental-color-segment.js');else{if(typeof importScripts==='function')importScripts('experimental-color-segment.js?v=color-6');raw=root.segmentObjects}
 function normalizeBlackArtwork(image,options){
  const a=image.data,w=image.width,h=image.height,n=w*h;let visible=0,dark=0,chromatic=0;const stable=new Map();
  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4;if(a[i+3]<20)continue;visible++;const v=a[i];if(Math.max(a[i],a[i+1],a[i+2])-Math.min(a[i],a[i+1],a[i+2])>12){chromatic++;continue}if(v<32)dark++;if(v<8||v>253||x<2||y<2||x>=w-2||y>=h-2)continue;let flat=true;for(let dy=-2;dy<=2&&flat;dy++)for(let dx=-2;dx<=2;dx++){const j=((y+dy)*w+x+dx)*4;if(a[j+3]<20||Math.abs(a[j]-v)>1){flat=false;break}}if(flat)stable.set(v,(stable.get(v)||0)+1)}

@@ -3,7 +3,7 @@ let lastAutomaticTarget=null;
 function hasTransparentBackground(image){for(let p=3;p<image.data.length;p+=4)if(image.data[p]<20)return true;return false}
 function automaticSource(){
  const scope=selection&&mode==='select'?'base':layers.length?'layer':'base';
- if(scope==='base'&&selection&&layers.length){const shape=selectionGeometry(),rect={...shape.bounds},scene=off(base.width,base.height),c=scene.getContext('2d');if($('baseVisible').checked)c.drawImage(base,0,0);layers.forEach(l=>drawLayer(c,l));const image=c.getImageData(rect.x,rect.y,rect.w,rect.h);return{kind:'scene',image,rect,shape,replaceIds:[],baseReference:base}}
+ if(scope==='base'&&selection&&layers.length)return visibleAreaSource();
  if(scope==='layer'){
   const currentLayer=current();if(!currentLayer||currentLayer.visible===false||chosen().length!==1)throw Error('Выберите один объект на холсте или в списке слоёв.');
   const parent={...currentLayer},image=parent.img.getContext('2d',{willReadFrequently:true}).getImageData(0,0,parent.img.width,parent.img.height);
@@ -13,8 +13,8 @@ function automaticSource(){
  const image=bc().getImageData(rect.x,rect.y,rect.w,rect.h);if(cached)image.data.set(cached.pixels);
  return{kind:'base',image,rect,shape,previousSession:cached,replaceIds:cached?cached.ids:[],baseReference:base};
 }
-function automaticOptions(source){return{tolerance:1+1.59*Number($('backgroundTolerance').value),detail:+$('splitTolerance').value,colorSensitivity:+$('colorSensitivity').value,transparentBackground:source.transparentBackground===true}}
-function automaticInput(source){return typeof maskForSegmentation==='function'?maskForSegmentation(source.image,source.rect,source.shape):source.image}
+function automaticOptions(source){return{tolerance:1+1.59*Number($('backgroundTolerance').value),detail:+$('splitTolerance').value,colorSensitivity:+$('colorSensitivity').value,transparentBackground:source.transparentBackground===true,backgroundColor:source.backgroundColor}}
+function automaticInput(source){return typeof maskForSegmentation==='function'?maskForSegmentation(source.image,source.rect,source.shape,source.backgroundColor):source.image}
 function makeAutomaticParts(source,result){const ids=new Map();result.groups.forEach((g,i)=>g.ids.forEach(id=>ids.set(id,i)));const images=result.groups.map(g=>{const canvas=off(g.w,g.h);return{canvas,pixels:canvas.getContext('2d').createImageData(g.w,g.h)}}),cleaned=new Uint8ClampedArray(source.image.data);
  for(let p=0;p<result.labels.length;p++){const gi=ids.get(result.labels[p]);if(gi===undefined)continue;const g=result.groups[gi],x=p%source.rect.w,y=Math.floor(p/source.rect.w),di=((y-g.y)*g.w+x-g.x)*4;for(let k=0;k<4;k++){images[gi].pixels.data[di+k]=source.image.data[p*4+k];cleaned[p*4+k]=result.background[k]}}
  const created=result.groups.map((g,i)=>{images[i].canvas.getContext('2d').putImageData(images[i].pixels,0,0);const layer={id:seq+i+1,name:source.kind==='layer'?source.parent.name+' · часть '+(i+1):'Объект '+(seq+i+1),img:images[i].canvas,x:source.rect.x+g.x+g.w/2,y:source.rect.y+g.y+g.h/2,scale:1,angle:0,opacity:1,visible:true,tint:null};if(source.kind==='layer'){const parent=source.parent,x=g.x+g.w/2-parent.img.width/2,y=g.y+g.h/2-parent.img.height/2,p=linearPoint(layerLinear(parent),x,y);Object.assign(layer,{x:parent.x+p.x,y:parent.y+p.y,scale:parent.scale,stretchX:parent.stretchX??1,stretchY:parent.stretchY??1,skew:parent.skew??0,angle:parent.angle,opacity:parent.opacity,visible:parent.visible,tint:parent.tint})}return layer});return{created,cleaned};

@@ -29,3 +29,4 @@ input[type=search]{width:100%;min-width:0;padding:7px;border:1px solid #dce1d3;b
 #splitResult{white-space:normal!important;overflow-wrap:anywhere;max-width:100%}.toast{max-width:calc(100vw - 24px);overflow-wrap:anywhere}
 
 header #runningVersion{display:block;font-size:11px;letter-spacing:0;color:#58634c;line-height:1.2;white-space:nowrap}
+button.dark:hover{background:#37432d;color:#fff}
