@@ -30,3 +30,26 @@ input[type=search]{width:100%;min-width:0;padding:7px;border:1px solid #dce1d3;b
 
 header #runningVersion{display:block;font-size:11px;letter-spacing:0;color:#58634c;line-height:1.2;white-space:nowrap}
 button.dark:hover{background:#37432d;color:#fff}
+/* Phone landscape: one toolbar row, all remaining height for the canvas. */
+@media (orientation:landscape) and (max-height:500px) and (max-width:1100px){
+ body{grid-template-rows:44px minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
+ header{grid-row:1;grid-column:1;justify-self:end;min-height:44px;padding:2px max(6px,env(safe-area-inset-right)) 2px 6px;gap:4px;z-index:6;border:0}
+ header .brand,header h1,header .spacer,header .desktop-label{display:none}
+ header>div:not(.spacer){display:contents}
+ header #runningVersion{font-size:10px;margin-right:3px}
+ header button{height:40px;min-width:40px;padding:6px;font-size:16px}
+ header #export{font-size:0;min-width:44px}header #export::after{content:'PNG';font-size:12px}
+ .mobile-toolbar{display:flex;grid-row:1;grid-column:1;justify-self:start;align-self:stretch;align-items:center;justify-content:flex-start;gap:4px;padding:2px 4px 2px max(6px,env(safe-area-inset-left));border:0;z-index:6}
+ .mobile-toolbar button{height:40px;padding:6px 8px;font-size:12px}
+ #toggleInspector{font-size:0}#toggleInspector::after{content:'▧ Слои';font-size:12px}
+ main{grid-row:2;grid-column:1;grid-template-columns:minmax(0,1fr)}
+ .workspace{position:relative;padding:0;gap:0}
+ .topline{display:contents}.topline strong,#dimensions,.workspace .foot{display:none}
+ #resetView{position:absolute;right:max(8px,env(safe-area-inset-right));top:6px;z-index:3;min-height:36px;min-width:48px;padding:5px 7px;font-size:11px;background:#f8faf1e8}
+ .stage{border:0;border-radius:0;padding:16px 8px}
+ .tools-panel,.inspector-panel{display:none;position:absolute;top:0;bottom:0;z-index:5;width:min(280px,calc(100% - 48px));box-shadow:0 8px 30px #25331f30}
+ .tools-panel{left:0}.inspector-panel{right:0}
+ body[data-drawer=tools] .tools-panel,body[data-drawer=inspector] .inspector-panel{display:flex}
+}
+@media (orientation:landscape) and (max-height:500px) and (max-width:1100px){.inspector-panel label{margin:3px 0 2px}}
+@media (orientation:landscape) and (max-height:300px) and (max-width:1100px){.inspector-panel{padding:4px}}
