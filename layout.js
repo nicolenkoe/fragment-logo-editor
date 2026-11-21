@@ -11,6 +11,7 @@ for(const id of ['editPanel','textPanel','projectPanel','geometryPanel','colorPa
  const panel=$(id);panel.dataset.fitPanel='';
  // Keep a field's label with its control when a short window needs pages.
  for(const label of [...panel.children].filter(e=>e.tagName==='LABEL')){const next=label.nextElementSibling;if(next){const field=document.createElement('div');field.className='field';panel.insertBefore(field,label);field.append(label,next)}}
+ if(id==='splitSettingsPanel'){panel.removeAttribute('data-fit-panel');continue}
  const content=document.createElement('div');content.className='fit-items';while(panel.firstChild)content.append(panel.firstChild);panel.append(content);
  const pager=document.createElement('div');pager.className='pagination fit-pagination';pager.hidden=true;
  const prev=document.createElement('button'),next=document.createElement('button'),text=document.createElement('span');prev.textContent='←';next.textContent='→';prev.setAttribute('aria-label','Предыдущие настройки');next.setAttribute('aria-label','Следующие настройки');pager.append(prev,text,next);panel.append(pager);
@@ -31,7 +32,7 @@ function positionRotationHandle(){const handle=$('rotateHandle'),l=selectionTran
  const x=cr.left-sr.left+(l.x+top.x)*ratio+30*m.b/normal,y=cr.top-sr.top+(l.y+top.y)*ratio-30*m.a/normal;
  handle.hidden=false;handle.style.left=(Math.min(Math.max(16,x),sr.width-16)-14)+'px';handle.style.top=(Math.min(Math.max(16,y),sr.height-16)-14)+'px';
 }
-function refreshLayout(){$('autoSplitModule').style.maxHeight=Math.max(170,$('editPanel').clientHeight-64)+'px';for(const panel of fitPanels)pageControls(panel);
+function refreshLayout(){for(const panel of fitPanels)pageControls(panel);
  if($('layersPanel').getClientRects().length){const rows=[...$('layers').children],height=$('layers').clientHeight,rowHeight=window.innerHeight<=560?35:41,pageSize=Math.max(1,Math.floor(height/rowHeight)),pages=Math.max(1,Math.ceil(rows.length/pageSize));layerPageIndex=Math.max(0,Math.min(layerPageIndex,pages-1));rows.forEach((row,i)=>row.hidden=Math.floor(i/pageSize)!==layerPageIndex);$('layerPage').textContent=(layerPageIndex+1)+' / '+pages;$('prevLayers').disabled=layerPageIndex===0;$('nextLayers').disabled=layerPageIndex===pages-1;}
  fitCanvas();
 }
