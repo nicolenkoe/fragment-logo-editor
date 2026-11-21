@@ -51,3 +51,4 @@ button.dark:hover{background:#37432d;color:#fff}
  .tools-panel{left:0}.inspector-panel{right:0}
  body[data-drawer=tools] .tools-panel,body[data-drawer=inspector] .inspector-panel{display:flex}
 }
+@media (orientation:landscape) and (max-height:500px) and (max-width:1100px){.inspector-panel label{margin:3px 0 2px}}
