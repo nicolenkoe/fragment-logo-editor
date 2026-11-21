@@ -1,0 +1,14 @@
+{
+  "version": "1.18",
+  "nativeBuildAndSignature": "passed",
+  "nativeFeedParser": "six real source formats, including recorder Android/Windows separation",
+  "selfUpdater": "26 existing assertions passed",
+  "ownerWeb": "three layouts, four widths, six versions/APK links, one Friends link",
+  "publicWeb": "five apps, descriptions, versions, two PC files, no catalog/Codex/repository links, five widths and offline fallback",
+  "directURLs": "all external APK and PC URLs HTTP 200; CamaraD relative source URLs corrected to raw distribution files",
+  "devicePending": [
+    "DownloadManager start/progress/completion",
+    "repeat-click suppression against actual download service",
+    "Samsung font scale and APK buttons"
+  ]
+}

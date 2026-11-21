@@ -3,6 +3,19 @@
   "packageName": "com.nicolenkoe.hub",
   "releases": [
     {
+      "versionCode": 19,
+      "versionName": "1.18",
+      "channel": "testing",
+      "releasedAt": "2026-11-21",
+      "minSdk": 26,
+      "minAndroid": "8.0",
+      "apkUrl": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/my-projects-1.18.apk",
+      "sha256": "4dad44010346b4f817ccf1e2e18f4d38af1dadd220378c158dcf99827e3fffdf",
+      "sizeBytes": 1143886,
+      "notes": "Короткая актуальная версия V… и прямое скачивание APK у каждого проекта. Данные обновляются из каталогов проектов при запуске. Android использует системный диспетчер загрузок без перехода на сайт; повторное нажатие не дублирует активную загрузку. В карточке Мои проекты — кнопка Друзьям. Основной сайт стал публичной витриной пяти проектов с описаниями, версиями, сайтами и доступными сборками ПК: без самого каталога, Codex и ссылок на репозитории. Личная веб-версия доступна отдельно в owner.html.",
+      "withdrawn": false
+    },
+    {
       "versionCode": 18,
       "versionName": "1.17",
       "channel": "testing",
