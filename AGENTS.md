@@ -12,7 +12,7 @@ For every delivered application version, provide a short numbered user acceptanc
 
 Keep automatic-splitting settings in one module above its Apply button. Re-splitting a selected layer must preserve all other layers and its complete affine transform. Selected-object frames are bright cyan with small handles: proportional corners, independent side stretching and rotation. Cropping-selection points must remain visually small with a usable invisible hit area.
 
-When testing pointer selection, cover overlapping layers: the active visible selected layer has priority anywhere inside its transformed bounds, even under a higher layer. Outside those bounds, normal picking applies. Preserve explicit layer-list selection and modifier-based multiselection.
+When testing pointer selection, cover overlapping layers: the active visible selected layer has priority on its painted pixels, even under a higher layer. Transparent pixels inside its transformed bounds pass the click through to painted objects behind it. Outside those bounds, normal picking applies. Preserve explicit layer-list selection and modifier-based multiselection.
 
 User-facing tutorial videos must be actual recordings of the current editor UI with the whole program visible, a visible cursor, real interactions and synchronized Russian voiceover. Do not substitute static illustrated slides. Show sensitivity 35/70/100 and real object counts before/after applying; include moving, color, uniform and independent sizing, rotation, grouping/ungrouping and image import. Keep the welcome page links to editor.html, current APK and video instructions working.
 

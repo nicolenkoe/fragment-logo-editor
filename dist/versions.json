@@ -2,11 +2,31 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.6",
+      "versionCode": 14,
+      "channel": "testing",
+      "date": "2026-11-21",
+      "publishedAt": "2026-11-21T18:56:53Z",
+      "notes": [
+        "Подсказки скрываются через две секунды, размещаются в стороне от кнопок и уходят при приближении курсора.",
+        "Прозрачные места объекта пропускают щелчок на надпись под ним.",
+        "Выделение области после разделения работает с видимыми объектами: вырезается только выбранная деталь."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.6/fragment-editor-1.3.6.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.6/fragment-source-1.3.6.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.6/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.5",
       "versionCode": 13,
       "channel": "testing",
       "date": "2026-11-21",
-      "publishedAt": "2026-11-21T21:00:00Z",
+      "publishedAt": "2026-11-21T18:37:46Z",
       "notes": [
         "При чувствительности 0 весь рисунок отделяется от фона одним объектом.",
         "Предпросмотр и итог используют один алгоритм, включая повторную обработку выбранного объекта.",
@@ -26,7 +46,7 @@
       "versionCode": 12,
       "channel": "testing",
       "date": "2026-11-21",
-      "publishedAt": "2026-11-21T09:00:00Z",
+      "publishedAt": "2026-11-21T18:28:37Z",
       "notes": [
         "Текущая версия постоянно видна под названием редактора в браузере и APK.",
         "В Android отображается номер установленной сборки.",
