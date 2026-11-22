@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
    float fit=Math.min((right-left)/image.getWidth(),(bottom-top)/image.getHeight()),w=image.getWidth()*fit,h=image.getHeight()*fit;
    android.graphics.RectF target=new android.graphics.RectF((left+right-w)/2,(top+bottom-h)/2,(left+right+w)/2,(top+bottom+h)/2);c.drawBitmap(image,null,target,paint);
   }};
-  rotationCover.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);rotationCover.setClickable(false);root.addView(rotationCover,new android.widget.FrameLayout.LayoutParams(-1,-1));setContentView(root);
+  rotationCover.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);rotationCover.setClickable(false);root.addView(rotationCover,new android.widget.FrameLayout.LayoutParams(-1,-1));setContentView(root);updateSystemBars();
   previewDecoder.execute(new Runnable(){public void run(){try{InputStream in=getAssets().open("www/assets/enduro-logo.png");try{android.graphics.Bitmap image=android.graphics.BitmapFactory.decodeStream(in);if(rotationPreview==null)rotationPreview=image;}finally{in.close();}}catch(Exception ignored){}}});
   WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
   updates=new UpdateManager(this,new UpdateManager.Host(){public void state(final JSONObject value){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentNativeUpdate&&window.fragmentNativeUpdate("+value.toString()+")",null);}});}public void install(final java.io.File file){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())launchUpdateInstall(file);}});}});
@@ -95,10 +95,23 @@ public class MainActivity extends Activity {
   if(android.os.Build.VERSION.SDK_INT>=26&&!getPackageManager().canRequestPackageInstalls()){installAfterPermission=file;try{startActivityForResult(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+getPackageName())),102);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Разрешите установку обновлений в настройках Android",Toast.LENGTH_LONG).show();}return;}
   Uri uri=Uri.parse("content://"+getPackageName()+".updates/"+file.getName());Intent intent=new Intent(Intent.ACTION_INSTALL_PACKAGE);intent.setDataAndType(uri,"application/vnd.android.package-archive");intent.setClipData(android.content.ClipData.newRawUri("APK",uri));intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);try{startActivityForResult(intent,103);}catch(Exception e){updates.installerFinished();Toast.makeText(this,"Не удалось открыть установщик Android",Toast.LENGTH_LONG).show();}
  }
- @Override public void onConfigurationChanged(android.content.res.Configuration configuration){
-  super.onConfigurationChanged(configuration);if(web!=null){web.requestLayout();web.invalidate();}
+ private void updateSystemBars(){
+  boolean landscape=getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+  android.view.View decor=getWindow().getDecorView();
+  if(android.os.Build.VERSION.SDK_INT>=30){
+   android.view.WindowInsetsController controller=getWindow().getInsetsController();
+   if(controller!=null){controller.setSystemBarsBehavior(android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);if(landscape)controller.hide(android.view.WindowInsets.Type.systemBars());else controller.show(android.view.WindowInsets.Type.systemBars());}
+  }else{
+   int flags=android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;if(android.os.Build.VERSION.SDK_INT>=26)flags|=android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+   if(landscape)flags|=android.view.View.SYSTEM_UI_FLAG_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+   decor.setSystemUiVisibility(flags);
+  }
  }
- @Override protected void onResume(){super.onResume();if(updates!=null)updates.check(false);}
+ @Override public void onWindowFocusChanged(boolean hasFocus){super.onWindowFocusChanged(hasFocus);if(hasFocus)updateSystemBars();}
+ @Override public void onConfigurationChanged(android.content.res.Configuration configuration){
+  super.onConfigurationChanged(configuration);updateSystemBars();if(web!=null){web.requestLayout();web.invalidate();}
+ }
+ @Override protected void onResume(){super.onResume();updateSystemBars();if(updates!=null)updates.check(false);}
  public class FileBridge {
   @JavascriptInterface public String imageAsset(String input){
    String path=ImageAssets.path(input);if(path==null)return null;

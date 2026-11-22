@@ -6,7 +6,7 @@ Before finishing every UI change, check for horizontal and vertical scrollbars a
 
 Use the supported browser QA path from the Sites skill. When browser tooling is unavailable, run the available logic checks, explicitly report that browser layout verification was unavailable, and do not claim the viewport checks passed.
 
-Cover the Text tab, polygon lasso, selection resize/rotation handles, grouping controls, sensitivity live preview, delayed tooltips and the video page when checking layouts. New controls must remain reachable through pagination on short windows.
+Cover the Text tab, polygon lasso, selection resize/rotation handles, grouping controls, sensitivity live preview, delayed tooltips and the video page when checking layouts. New controls must remain reachable through panel scrolling on short windows.
 
 For every delivered application version, provide a short numbered user acceptance checklist and a short video with Russian voiceover explaining what to verify. Send the links/files through the email channel when authorized in the conversation. Keep recipient contact information out of the public repository. The right-hand list shows applied layers only; live sensitivity previews stay on the canvas until applied.
 
@@ -17,3 +17,5 @@ When testing pointer selection, cover overlapping layers: the active visible sel
 User-facing tutorial videos must be actual recordings of the current editor UI with the whole program visible, a visible cursor, real interactions and synchronized Russian voiceover. Do not substitute static illustrated slides. Show sensitivity 35/70/100 and real object counts before/after applying; include moving, color, uniform and independent sizing, rotation, grouping/ungrouping and image import. Keep the welcome page links to editor.html, current APK and video instructions working.
 
 The public root/index.html is the welcome page. Open editor.html (or click «Редактировать в браузере») for editor flows and layout checks; Android starts editor.html directly.
+
+Panel preferences (2026-11-22): View cycles directly without a dialog. There are only two panel states, open and icon rail. Each state remembers its own independently dragged position; moving one must not change the other. Default docked collapse buttons stay at the same location. Landscape Android hides system bars; portrait restores them.

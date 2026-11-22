@@ -7,3 +7,7 @@ Browser checks passed at 1440×900, 1280×720, 1024×768, 390×844, 375×667, 84
 Reading order is applied only to newly created disjoint parts, in the source's own coordinates. Actual re-splitting of the supplied LENINGRADSKAYA word at maximum detail passes left-to-right ordering, including a rotated/stretched parent. Other layers and base pixels remain byte-identical. Manual reordering remains unchanged by UI refresh. A shuffled two-line synthetic case also passes.
 
 Screenshots and video are stored with the release checks. Android APK resources match the web files exactly; the existing signing certificate is retained. Native Android evidence is reported separately after the Pixel 6 / Android 15 emulator run completes.
+
+## 1.3.15
+
+Adds orientation-specific native system bar control and independent saved positions for open panels and icon rails. A pointer-driven browser regression confirms separately dragging both states, moving the open state again without changing the rail, and restoring both after reload. Landscape immersive/portrait restoration is validated separately on the Pixel 6 / Android 15 emulator.
