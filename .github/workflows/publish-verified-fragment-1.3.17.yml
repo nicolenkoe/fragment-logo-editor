@@ -21,7 +21,7 @@ jobs:
           path: source
       - uses: actions/checkout@v4
         with:
-          ref: ff04905680f15d091f8c3786b05dc3da5f076601
+          ref: 53d3e8eddec696d667cdef7f9363ba41b7fc007f
           path: staged
       - uses: actions/checkout@v4
         with:
@@ -37,8 +37,15 @@ jobs:
           import hashlib,json,shutil,subprocess,urllib.request,zipfile
           source=Path('source');stage=Path('staged');target=Path('public');version='1.3.17'
           expected='a4ef8219ea1c60e5f5feb3ba5b430bdab8d9eb2fe352457857ee5ab1695889a6'
-          apk=Path('verified.apk')
-          urllib.request.urlretrieve('https://raw.githubusercontent.com/nicolenkoe/android-app-qa/ffbdc1d86c0cec4cf3f055150a2f781265269493/fragment.apk',apk)
+          parts=json.loads((stage/'.release-parts/manifest.json').read_text())
+          for item in parts:
+              output=stage/item['path'];assert output.resolve().is_relative_to(stage.resolve())
+              output.parent.mkdir(parents=True,exist_ok=True)
+              with output.open('wb') as stream:
+                  for name in item['parts']:
+                      chunk=stage/name;assert chunk.resolve().is_relative_to(stage.resolve());stream.write(chunk.read_bytes())
+              assert output.stat().st_size==item['size'] and hashlib.sha256(output.read_bytes()).hexdigest()==item['sha256'],'Media piece mismatch'
+          apk=stage/'verified.apk'
           assert hashlib.sha256(apk.read_bytes()).hexdigest()==expected,'Tested APK hash mismatch'
           manifest=json.loads((stage/'downloads/1.3.17/update.json').read_text())
           assert manifest['sha256']==expected and manifest['size']==apk.stat().st_size and manifest['versionCode']==25
@@ -51,16 +58,8 @@ jobs:
                   name=str(path.relative_to(source/'dist'));data=path.read_bytes()
                   assert package.read('assets/www/'+name)==data,'APK/web mismatch: '+name
                   output=target/name;output.parent.mkdir(parents=True,exist_ok=True);output.write_bytes(data);count+=1
-          parts=json.loads((stage/'.release-parts/manifest.json').read_text())
-          for item in parts:
-              output=stage/item['path'];assert output.resolve().is_relative_to(stage.resolve())
-              output.parent.mkdir(parents=True,exist_ok=True)
-              with output.open('wb') as stream:
-                  for name in item['parts']:
-                      chunk=stage/name;assert chunk.resolve().is_relative_to(stage.resolve());stream.write(chunk.read_bytes())
-              assert output.stat().st_size==item['size'] and hashlib.sha256(output.read_bytes()).hexdigest()==item['sha256'],'Media piece mismatch'
           for path in stage.rglob('*'):
-              if not path.is_file() or any(part in path.relative_to(stage).parts for part in ['.git','.release-parts']):continue
+              if path==stage/'verified.apk' or not path.is_file() or any(part in path.relative_to(stage).parts for part in ['.git','.release-parts']):continue
               name=path.relative_to(stage);output=target/name;output.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,output)
           folder=target/'downloads'/version;folder.mkdir(exist_ok=True)
           output=folder/('fragment-editor-'+version+'.apk')
@@ -92,7 +91,7 @@ jobs:
           for path in Path('../source/dist').rglob('*'):
               if path.is_file() and 'downloads' not in path.relative_to('../source/dist').parts:names.append(str(path.relative_to('../source/dist')))
           for path in Path('../staged').rglob('*'):
-              if path.is_file() and not any(part in path.relative_to('../staged').parts for part in ['.git','.release-parts']):names.append(str(path.relative_to('../staged')))
+              if path!=Path('../staged/verified.apk') and path.is_file() and not any(part in path.relative_to('../staged').parts for part in ['.git','.release-parts']):names.append(str(path.relative_to('../staged')))
           names.extend(['downloads/1.3.17','downloads/fragment-editor.apk','downloads/fragment-source.zip'])
           subprocess.run(['git','add','--',*names],check=True)
           PY
