@@ -4,7 +4,7 @@ const fitWithoutView=fitCanvas;
 fitCanvas=function(){canvas.style.transform=`translate(${viewState.panX}px,${viewState.panY}px) scale(${viewState.zoom})`;fitWithoutView();$('resetView').textContent=Math.round(viewState.zoom*100)+'%'};
 function resetCanvasView(){viewState.zoom=1;viewState.panX=viewState.panY=0;fitCanvas();render()}
 function zoomCanvasAt(zoom,x,y){const next=Math.max(.25,Math.min(6,zoom)),r=canvas.getBoundingClientRect(),factor=next/viewState.zoom;viewState.panX+=(x-r.left-r.width/2)*(1-factor);viewState.panY+=(y-r.top-r.height/2)*(1-factor);viewState.zoom=next;fitCanvas();render()}
-function cancelCanvasGesture(){drag=null;if(typeof selectionGesture!=='undefined')selectionGesture=null;if(typeof objectGesture!=='undefined')objectGesture=null;if(typeof rotationDrag!=='undefined')rotationDrag=null}
+function cancelCanvasGesture(){drag=null;if(typeof selectionGesture!=='undefined')selectionGesture=null;if(typeof objectGesture!=='undefined')objectGesture=null;if(typeof objectMoveGesture!=='undefined')objectMoveGesture=null;if(typeof rotationDrag!=='undefined')rotationDrag=null}
 $('resetView').onclick=resetCanvasView;
 $('stage').addEventListener('wheel',e=>{e.preventDefault();const pixels=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?$('stage').clientHeight:1);zoomCanvasAt(viewState.zoom*Math.exp(-pixels*.0015),e.clientX,e.clientY)},{passive:false});
 let viewSpace=false,viewPan=null,touchZoom=null,touchConsumed=false;
