@@ -1,0 +1,1428 @@
+[
+  {
+    "name": "portrait-start-visible",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 72.5952377319336,
+      "y": 341.3571472167969,
+      "right": 339.5952377319336,
+      "bottom": 608.3571472167969,
+      "w": 267,
+      "h": 267
+    },
+    "stage": {
+      "x": 50,
+      "y": 136.85714721679688,
+      "right": 362.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 155254
+  },
+  {
+    "name": "portrait-system-bars",
+    "statusVisible": true,
+    "navigationVisible": true
+  },
+  {
+    "name": "fullscreen-landscape-first",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 174067,
+    "elapsedMs": 13163
+  },
+  {
+    "name": "fullscreen-landscape-first-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 174874
+  },
+  {
+    "name": "fullscreen-landscape-250ms",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 176445
+  },
+  {
+    "name": "fullscreen-landscape-250ms-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 176536
+  },
+  {
+    "name": "fullscreen-landscape",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 179317
+  },
+  {
+    "name": "fullscreen-landscape-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 826.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 179380
+  },
+  {
+    "name": "landscape-system-bars",
+    "statusVisible": false,
+    "navigationVisible": false
+  },
+  {
+    "name": "full-height-panels-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 186313
+  },
+  {
+    "name": "before-drag-10-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 187707
+  },
+  {
+    "name": "open-position-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 204232
+  },
+  {
+    "name": "before-drag-12-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 263.1428527832031,
+      "y": 16.095237731933594,
+      "right": 643.1428527832031,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 40,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 207733
+  },
+  {
+    "name": "rail-position-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 219765
+  },
+  {
+    "name": "open-position-restored-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 223284
+  },
+  {
+    "name": "rail-position-restored-visible",
+    "viewport": [
+      866,
+      412
+    ],
+    "canvas": {
+      "x": 243.1428680419922,
+      "y": 16.095237731933594,
+      "right": 623.1428680419922,
+      "bottom": 396.0952377319336,
+      "w": 380,
+      "h": 380
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "right": 866.2857055664062,
+      "bottom": 412.19049072265625
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        866,
+        412
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 227187
+  },
+  {
+    "name": "portrait-return-first",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": false,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": [
+        "BODY"
+      ]
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 233818,
+    "elapsedMs": 5321
+  },
+  {
+    "name": "portrait-return-first-visible",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 233900
+  },
+  {
+    "name": "portrait-return-250ms",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 236198
+  },
+  {
+    "name": "portrait-return-250ms-visible",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 236277
+  },
+  {
+    "name": "portrait-return",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 237983
+  },
+  {
+    "name": "portrait-return-visible",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 238053
+  },
+  {
+    "name": "portrait-system-bars",
+    "statusVisible": true,
+    "navigationVisible": true
+  },
+  {
+    "name": "portrait-final-visible",
+    "viewport": [
+      412,
+      842
+    ],
+    "canvas": {
+      "x": 32.595237731933594,
+      "y": 301.3571472167969,
+      "right": 379.5952377319336,
+      "bottom": 648.3571472167969,
+      "w": 347,
+      "h": 347
+    },
+    "stage": {
+      "x": 10,
+      "y": 136.85714721679688,
+      "right": 402.19049072265625,
+      "bottom": 812.8571472167969
+    },
+    "layout": {
+      "ok": true,
+      "viewport": [
+        412,
+        842
+      ],
+      "issues": []
+    },
+    "layers": [
+      {
+        "id": 4,
+        "x": 651,
+        "y": 1142,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 3,
+        "x": 797,
+        "y": 944,
+        "angle": 0,
+        "tint": null
+      },
+      {
+        "id": 2,
+        "x": 959.5,
+        "y": 758,
+        "angle": 12,
+        "tint": null
+      },
+      {
+        "id": 1,
+        "x": 573,
+        "y": 581.5,
+        "angle": 0,
+        "tint": null
+      }
+    ],
+    "selected": [
+      2
+    ],
+    "active": 2,
+    "zoom": 1,
+    "loading": false,
+    "drawer": "",
+    "deviceElapsedMs": 242356
+  }
+]

@@ -16,3 +16,38 @@ body[data-workspace-view] .tools-panel .hint{display:none}
 /* A landscape keyboard can leave less than 200 CSS pixels. Keep the active
    modal clear; restore both modules unchanged when the keyboard closes. */
 @media(max-height:200px){body:has(.rename-dialog[open]) aside.tools-panel,body:has(.rename-dialog[open]) aside.inspector-panel{display:none!important}}
+
+/* Reserve the viewport for content: layer navigation and background live in the heading. */
+body[data-workspace-view] aside.inspector-panel>.inspector-footer{display:none!important}
+body[data-workspace-view] .inspector-panel .module-heading{gap:2px}
+.module-layer-pager{display:flex;align-items:center;flex:0 0 auto;gap:0!important;margin:0!important;font-size:10px!important}
+.module-layer-pager[hidden]{display:none!important}
+body[data-workspace-view] .module-layer-pager button{display:flex;align-items:center;justify-content:center;width:22px;min-width:22px;min-height:24px;height:24px;padding:0;font-size:12px}
+.module-layer-pager #layerPage{min-width:22px;white-space:nowrap;text-align:center;font-size:10px}
+.module-background{display:flex;align-items:center;justify-content:center;position:relative;flex:0 0 24px;width:24px;height:24px;min-height:24px;padding:3px}
+.module-background[aria-pressed=true]{background:var(--selected,#e5f7ff)}
+.module-background.base-off::after{content:'';position:absolute;width:20px;height:2px;transform:rotate(-45deg);background:currentColor}
+body[data-workspace-view] aside:not([data-level=open]) .module-background,body[data-workspace-view] aside:not([data-level=open]) .module-layer-pager{display:none!important}
+body[data-workspace-view] .layer{height:32px}
+body[data-workspace-view=tiles] #layers{grid-auto-rows:56px}
+body[data-workspace-view=tiles] #layers .layer{height:56px}
+body[data-workspace-view=tiles] #layers .layer-thumb{height:28px;margin-bottom:2px}
+body[data-workspace-view] .layer.unnamed-layer .layer-name{display:none!important}
+body[data-workspace-view] .layer.unnamed-layer .layer-thumb{width:54px;height:26px;object-fit:contain;margin:auto}
+body[data-workspace-view=tiles] #layers .unnamed-layer .layer-thumb{width:58px;height:32px;margin:0}
+
+/* Requested touch scrolling stays inside the full-height side modules. */
+body[data-workspace-view] aside .fit-items,body[data-workspace-view] #layers{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#9aa58d transparent;-webkit-overflow-scrolling:touch}
+body[data-workspace-view] aside .fit-items::-webkit-scrollbar,body[data-workspace-view] #layers::-webkit-scrollbar{width:3px;height:3px}
+body[data-workspace-view] aside .fit-items::-webkit-scrollbar-thumb,body[data-workspace-view] #layers::-webkit-scrollbar-thumb{background:#9aa58d;border-radius:4px}
+body[data-workspace-view] aside .fit-pagination,body[data-workspace-view] .module-layer-pager{display:none!important}
+body[data-workspace-view] aside .fit-items{padding-right:3px}
+
+/* The collapse target stays at the same outer corner in both states. */
+body[data-workspace-view] .module-collapse{position:absolute!important;top:6px!important;left:auto;right:auto}
+body[data-workspace-view] .tools-panel .module-collapse{left:4px!important}
+body[data-workspace-view] .inspector-panel .module-collapse{right:4px!important}
+body[data-workspace-view] .tools-panel[data-level=open] .module-heading{padding-left:30px}
+body[data-workspace-view] .inspector-panel[data-level=open] .module-heading{padding-right:30px}
+body[data-workspace-view] aside[data-level=rail]>.module-heading{padding-top:30px;flex-basis:58px}
+@media(max-height:300px){body[data-workspace-view] .module-collapse{top:4px!important}}
