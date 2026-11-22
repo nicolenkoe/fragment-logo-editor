@@ -10,7 +10,7 @@ let multiTransformFrame=null;
 function transformSignature(objects){return JSON.stringify(objects.map(l=>[l.id,l.x,l.y,l.scale,l.angle,l.stretchX??1,l.stretchY??1,l.skew??0,l.visible,l.img.width,l.img.height]))}
 function selectionTransformTarget(){
  const objects=chosen().filter(l=>l.visible!==false);
- if(objects.length!==chosen().length||!objects.length){multiTransformFrame=null;return null}
+ if(objects.length!==chosen().length||!objects.length||objects.some(l=>l.locked)){multiTransformFrame=null;return null}
  if(objects.length===1){multiTransformFrame=null;return objects[0]}
  const signature=transformSignature(objects);
  if(multiTransformFrame?.signature===signature)return multiTransformFrame;

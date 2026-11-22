@@ -1,0 +1,1 @@
+importScripts('vectorize.js?v=1317');onmessage=e=>{try{postMessage({id:e.data.id,result:FragmentVectorize.trace(e.data.image,e.data.options)})}catch(error){postMessage({id:e.data.id,error:error.message})}};
