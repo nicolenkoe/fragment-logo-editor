@@ -27,3 +27,13 @@ viewStage.addEventListener('pointermove',e=>{
 function endViewPointer(e){viewTouches.delete(e.pointerId);if(touchConsumed){e.preventDefault();e.stopImmediatePropagation();if(viewTouches.size<2)touchZoom=null;if(!viewTouches.size)touchConsumed=false}if(viewPan?.pointer===e.pointerId){viewPan=null;e.preventDefault();e.stopImmediatePropagation()}}
 viewStage.addEventListener('pointerup',endViewPointer,true);viewStage.addEventListener('pointercancel',endViewPointer,true);
 resetCanvasView();
+
+// A small local preview covers Chromium's stale surface during Android rotation.
+if(globalThis.AndroidViewport?.preview){
+ let nativePreviewTimer;
+ const renderWithoutNativePreview=render;
+ render=function(){renderWithoutNativePreview();clearTimeout(nativePreviewTimer);nativePreviewTimer=setTimeout(()=>{
+  try{const factor=Math.min(1,1200/Math.max(canvas.width,canvas.height)),preview=off(Math.max(1,Math.round(canvas.width*factor)),Math.max(1,Math.round(canvas.height*factor)));preview.getContext('2d').drawImage(canvas,0,0,preview.width,preview.height);AndroidViewport.preview(preview.toDataURL('image/png'));}catch{}
+ },100)};
+ render();
+}

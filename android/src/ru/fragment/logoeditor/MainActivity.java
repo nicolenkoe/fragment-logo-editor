@@ -18,6 +18,25 @@ import org.json.JSONObject;
 public class MainActivity extends Activity {
  private WebView web;
  private boolean viewportDrawPending;private long viewportDrawGeneration;
+ private android.view.View rotationCover;private volatile android.graphics.Bitmap rotationPreview;
+ private final java.util.concurrent.ExecutorService previewDecoder=java.util.concurrent.Executors.newSingleThreadExecutor();
+ private volatile long previewGeneration;
+ private float previewLeft=.08f,previewTop=.2f,previewRight=.92f,previewBottom=.9f;
+ public class ViewportBridge {
+  @JavascriptInterface public void preview(final String data){
+   if(data==null||!data.startsWith("data:image/png;base64,")||data.length()>8000000)return;
+   final long generation=++previewGeneration;
+   previewDecoder.execute(new Runnable(){public void run(){try{byte[] bytes=Base64.decode(data.substring(22),Base64.DEFAULT);final android.graphics.Bitmap image=android.graphics.BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+    if(image!=null&&generation==previewGeneration)runOnUiThread(new Runnable(){public void run(){rotationPreview=image;if(viewportDrawPending&&rotationCover!=null)rotationCover.invalidate();}});
+   }catch(Exception ignored){}}});
+  }
+ }
+ private void viewportReady(final long generation){
+  web.evaluateJavascript("JSON.stringify((()=>{window.FragmentViewport&&window.FragmentViewport.resize();const c=document.getElementById('canvas');if(!c)return null;const r=c.getBoundingClientRect();return [r.left/innerWidth,r.top/innerHeight,r.right/innerWidth,r.bottom/innerHeight]})())",new ValueCallback<String>(){public void onReceiveValue(String value){
+   try{org.json.JSONArray a=new org.json.JSONArray((String)new org.json.JSONTokener(value).nextValue());if(generation==viewportDrawGeneration){previewLeft=(float)a.getDouble(0);previewTop=(float)a.getDouble(1);previewRight=(float)a.getDouble(2);previewBottom=(float)a.getDouble(3);rotationCover.invalidate();}}catch(Exception ignored){}
+   web.postVisualStateCallback(generation,new WebView.VisualStateCallback(){public void onComplete(long id){if(id==viewportDrawGeneration){viewportDrawPending=false;web.invalidate();rotationCover.invalidate();}}});
+  }});
+ }
  private ValueCallback<Uri[]> chooser;
  private byte[] pendingFile;
  private UpdateManager updates;private java.io.File installAfterPermission;
@@ -30,24 +49,25 @@ public class MainActivity extends Activity {
     super.onSizeChanged(w,h,oldw,oldh);
     if(w<=0||h<=0||(w==oldw&&h==oldh))return;
     final long generation=++viewportDrawGeneration;
-    // Do not submit an old, portrait-sized WebView buffer as the first
-    // landscape window frame. Let Android retain the rotation transition
-    // until Chromium confirms that the resized document can be drawn.
-    viewportDrawPending=oldw>0&&oldh>0;
-    post(new Runnable(){public void run(){
-     evaluateJavascript("window.FragmentViewport&&window.FragmentViewport.resize()",new ValueCallback<String>(){public void onReceiveValue(String ignored){
-      postVisualStateCallback(generation,new WebView.VisualStateCallback(){public void onComplete(long id){
-       if(id==viewportDrawGeneration){viewportDrawPending=false;invalidate();}
-      }});
-     }});
-    }});
-    postDelayed(new Runnable(){public void run(){if(generation==viewportDrawGeneration&&viewportDrawPending){viewportDrawPending=false;invalidate();}}},2500);
+    viewportDrawPending=oldw>0&&oldh>0&&w!=oldw;
+    if(viewportDrawPending){previewLeft=.04f;previewTop=.04f;previewRight=.96f;previewBottom=.96f;if(rotationCover!=null)rotationCover.invalidate();}
+    post(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())viewportReady(generation);}});
+    postDelayed(new Runnable(){public void run(){if(generation==viewportDrawGeneration&&viewportDrawPending){viewportDrawPending=false;invalidate();if(rotationCover!=null)rotationCover.invalidate();}}},2500);
    }
-  };setContentView(web);
-  web.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){return !viewportDrawPending;}});
+  };
+  android.widget.FrameLayout root=new android.widget.FrameLayout(this);
+  root.addView(web,new android.widget.FrameLayout.LayoutParams(-1,-1));
+  rotationCover=new android.view.View(this){private final android.graphics.Paint paint=new android.graphics.Paint(3);@Override protected void onDraw(android.graphics.Canvas c){
+   if(!viewportDrawPending)return;c.drawColor(Color.rgb(225,228,220));android.graphics.Bitmap image=rotationPreview;if(image==null)return;
+   float left=Math.max(0,previewLeft*getWidth()),top=Math.max(0,previewTop*getHeight()),right=Math.min(getWidth(),previewRight*getWidth()),bottom=Math.min(getHeight(),previewBottom*getHeight());
+   float fit=Math.min((right-left)/image.getWidth(),(bottom-top)/image.getHeight()),w=image.getWidth()*fit,h=image.getHeight()*fit;
+   android.graphics.RectF target=new android.graphics.RectF((left+right-w)/2,(top+bottom-h)/2,(left+right+w)/2,(top+bottom+h)/2);c.drawBitmap(image,null,target,paint);
+  }};
+  rotationCover.setImportantForAccessibility(android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO);rotationCover.setClickable(false);root.addView(rotationCover,new android.widget.FrameLayout.LayoutParams(-1,-1));setContentView(root);
+  previewDecoder.execute(new Runnable(){public void run(){try{InputStream in=getAssets().open("www/assets/enduro-logo.png");try{android.graphics.Bitmap image=android.graphics.BitmapFactory.decodeStream(in);if(rotationPreview==null)rotationPreview=image;}finally{in.close();}}catch(Exception ignored){}}});
   WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
   updates=new UpdateManager(this,new UpdateManager.Host(){public void state(final JSONObject value){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentNativeUpdate&&window.fragmentNativeUpdate("+value.toString()+")",null);}});}public void install(final java.io.File file){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())launchUpdateInstall(file);}});}});
-  web.addJavascriptInterface(new FileBridge(),"AndroidFiles");web.addJavascriptInterface(new UpdateBridge(),"AndroidUpdates");
+  web.addJavascriptInterface(new ViewportBridge(),"AndroidViewport");web.addJavascriptInterface(new FileBridge(),"AndroidFiles");web.addJavascriptInterface(new UpdateBridge(),"AndroidUpdates");
   web.setWebViewClient(new WebViewClient(){
    @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){return external(request.getUrl());}
    @Override public boolean shouldOverrideUrlLoading(WebView view,String url){return external(Uri.parse(url));}
@@ -99,5 +119,5 @@ public class MainActivity extends Activity {
  }
  @Override public void onBackPressed(){if(web.canGoBack())web.goBack();else super.onBackPressed();}
  @Override protected void onSaveInstanceState(Bundle state){web.saveState(state);super.onSaveInstanceState(state);}
- @Override protected void onDestroy(){if(chooser!=null)chooser.onReceiveValue(null);web.removeJavascriptInterface("AndroidFiles");web.removeJavascriptInterface("AndroidUpdates");web.destroy();super.onDestroy();}
+ @Override protected void onDestroy(){if(chooser!=null)chooser.onReceiveValue(null);previewDecoder.shutdownNow();web.removeJavascriptInterface("AndroidViewport");web.removeJavascriptInterface("AndroidFiles");web.removeJavascriptInterface("AndroidUpdates");web.destroy();super.onDestroy();}
 }
