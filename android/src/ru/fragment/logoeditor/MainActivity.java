@@ -17,6 +17,7 @@ import org.json.JSONObject;
 /** Offline editor; documents are selected and saved through Android's file picker. */
 public class MainActivity extends Activity {
  private WebView web;
+ private boolean viewportDrawPending;private long viewportDrawGeneration;
  private ValueCallback<Uri[]> chooser;
  private byte[] pendingFile;
  private UpdateManager updates;private java.io.File installAfterPermission;
@@ -27,11 +28,24 @@ public class MainActivity extends Activity {
   web=new WebView(this){
    @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
     super.onSizeChanged(w,h,oldw,oldh);
-    if(w>0&&h>0&&(w!=oldw||h!=oldh))post(new Runnable(){public void run(){
-     evaluateJavascript("window.FragmentViewport&&window.FragmentViewport.resize()",null);invalidate();
+    if(w<=0||h<=0||(w==oldw&&h==oldh))return;
+    final long generation=++viewportDrawGeneration;
+    // Do not submit an old, portrait-sized WebView buffer as the first
+    // landscape window frame. Let Android retain the rotation transition
+    // until Chromium confirms that the resized document can be drawn.
+    viewportDrawPending=oldw>0&&oldh>0;
+    post(new Runnable(){public void run(){
+     evaluateJavascript("window.FragmentViewport&&window.FragmentViewport.resize()",new ValueCallback<String>(){public void onReceiveValue(String ignored){
+      postVisualStateCallback(generation,new WebView.VisualStateCallback(){public void onComplete(long id){
+       if(id==viewportDrawGeneration){viewportDrawPending=false;invalidate();}
+      }});
+     }});
     }});
+    postDelayed(new Runnable(){public void run(){if(generation==viewportDrawGeneration&&viewportDrawPending){viewportDrawPending=false;invalidate();}}},2500);
    }
-  };setContentView(web);WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+  };setContentView(web);
+  web.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){return !viewportDrawPending;}});
+  WebSettings settings=web.getSettings();settings.setJavaScriptEnabled(true);settings.setDomStorageEnabled(true);settings.setAllowFileAccess(true);settings.setAllowContentAccess(true);settings.setMediaPlaybackRequiresUserGesture(true);settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
   updates=new UpdateManager(this,new UpdateManager.Host(){public void state(final JSONObject value){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())web.evaluateJavascript("window.fragmentNativeUpdate&&window.fragmentNativeUpdate("+value.toString()+")",null);}});}public void install(final java.io.File file){runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&!isDestroyed())launchUpdateInstall(file);}});}});
   web.addJavascriptInterface(new FileBridge(),"AndroidFiles");web.addJavascriptInterface(new UpdateBridge(),"AndroidUpdates");
   web.setWebViewClient(new WebViewClient(){
