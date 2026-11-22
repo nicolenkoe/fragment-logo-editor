@@ -46,10 +46,10 @@ $('upload').onclick=()=>$('file').click();$('file').onchange=async e=>{let f=e.t
 $('save').onclick=()=>{const data={version:1,name:$('filename').textContent,base:base.toDataURL(),visible:$('baseVisible').checked,pending,layers:layers.map(serializeLayer)};download(new Blob([JSON.stringify(data)],{type:'application/json'}),'fragment-project.json')};$('open').onclick=()=>$('projectFile').click();$('projectFile').onchange=async e=>{try{let f=e.target.files[0];if(!f)return;if(f.size>60e6)throw Error();let d=JSON.parse(await f.text());if(d.version!==1||!Array.isArray(d.layers)||d.layers.length>150)throw Error();let bi=await loadImg(d.base);if(bi.width>6000||bi.height>6000)throw Error();let n=[];const budget={count:0};for(let l of d.layers)n.push(await deserializeLayer(l,budget));checkpoint();base=off(bi.width,bi.height);bc().drawImage(bi,0,0);layers=n;pending=d.pending;active=null;selected.clear();selection=null;$('baseVisible').checked=d.visible!==false;if(typeof resetCanvasView==='function')resetCanvasView();$('filename').textContent=d.name||'Проект';ui();toast('Проект открыт')}catch{toast('Не удалось открыть проект. Нужен файл редактора .json')}e.target.value=''};
 function applySource(image,name,record=true){
  if(record)checkpoint();base=off(image.width,image.height);bc().drawImage(image,0,0);layers=[];active=null;selected.clear();pending=null;selection=null;
- if(typeof resetCanvasView==='function')resetCanvasView();$('filename').textContent=name;$('baseVisible').checked=true;if(!record)history=[];ui();
+ if(typeof resetCanvasView==='function')resetCanvasView();$('exampleLoading').hidden=true;$('filename').textContent=name;$('baseVisible').checked=true;if(!record)history=[];ui();
 }
-async function demo(initial=false){const previous=base;try{const image=await loadImg('assets/enduro-logo.png');if(base!==previous)return;applySource(image,'CLUB ENDURO LENINGRADSKAYA',!initial);setMode('move')}
- catch(error){toast(FragmentErrors.report(error,'Не удалось открыть пример. Загрузите фото.'))}}
+async function demo(initial=false){const previous=base;$('exampleLoading').hidden=false;try{const image=await loadImg('assets/enduro-logo.png');if(base!==previous)return;applySource(image,'CLUB ENDURO LENINGRADSKAYA',!initial);setMode('move')}
+ catch(error){toast(FragmentErrors.report(error,'Не удалось открыть пример. Загрузите фото.'))}finally{$('exampleLoading').hidden=true}}
 $('demo').onclick=()=>demo();base=off(1254,1254);render();
 
 // The start image stays on this device; no upload to a service is needed.
@@ -75,7 +75,7 @@ $('demo').onclick=async()=>{try{await startPreference('delete');await demoWithou
  const saved=await startPreference('get');if(base!==initialBase||layers.length||selection)return;if(!saved){await demo(true);return;}
  url=URL.createObjectURL(saved.blob);const image=await loadImg(url);if(base!==initialBase||layers.length||selection)return;
  applySource(image,saved.name||'Стартовое фото',false);
- }catch{if(base===initialBase&&!layers.length&&!selection)await demo(true)}finally{if(url)URL.revokeObjectURL(url)}})();
+ }catch{if(base===initialBase&&!layers.length&&!selection)await demo(true)}finally{if(url)URL.revokeObjectURL(url);$('exampleLoading').hidden=true}})();
 
 function serializeLayer(l){const result={...l,img:l.img.toDataURL()};if(l.children)result.children=l.children.map(serializeLayer);return result}
 async function deserializeLayer(l,budget,depth=0){if(++budget.count>300||depth>12||![l.x,l.y,l.scale,l.angle,l.opacity].every(Number.isFinite)||l.scale<=0||l.scale>100)throw Error();const image=await loadImg(l.img);if(image.width>12000||image.height>12000||image.width*image.height>16000000)throw Error();const result={...l,img:off(image.width,image.height),id:++seq};result.img.getContext('2d').drawImage(image,0,0);if(l.children){if(!Array.isArray(l.children))throw Error();result.children=[];for(const child of l.children)result.children.push(await deserializeLayer(child,budget,depth+1))}return result}

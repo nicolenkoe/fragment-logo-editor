@@ -49,8 +49,28 @@ window.checkEditorLayout=function(){const root=document.documentElement,issues=[
  if(root.scrollWidth>root.clientWidth+1||root.scrollHeight>root.clientHeight+1)issues.push('Страница выходит за размер окна');
  for(const el of [document.body,$('stage'),...document.querySelectorAll('.fit-items,#layers')]){if(!el.getClientRects().length)continue;if(el===$('stage')&&typeof viewState!=='undefined')continue;if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1)issues.push(el.id||el.className||el.tagName)}
  const r=canvas.getBoundingClientRect(),s=$('stage').getBoundingClientRect();if((typeof viewState==='undefined'||viewState.zoom===1&&viewState.panX===0&&viewState.panY===0)&&(r.left<s.left-1||r.top<s.top-1||r.right>s.right+1||r.bottom>s.bottom+1))issues.push('Холст выходит за рабочую область');
- for(const el of document.querySelectorAll('.update-dialog[open],.palette-dialog[open],.export-dialog[open]')){const b=el.getBoundingClientRect();if(b.left<0||b.top<0||b.right>window.innerWidth||b.bottom>window.innerHeight||el.scrollHeight>el.clientHeight+1)issues.push('Диалог выходит за размер экрана')}
+ for(const el of document.querySelectorAll('.update-dialog[open],.palette-dialog[open],.export-dialog[open],.about-dialog[open]')){const b=el.getBoundingClientRect();if(b.left<0||b.top<0||b.right>window.innerWidth||b.bottom>window.innerHeight||el.scrollHeight>el.clientHeight+1)issues.push('Диалог выходит за размер экрана')}
  return{ok:issues.length===0,viewport:[window.innerWidth,window.innerHeight],issues};
 };
 const layoutObserver=new ResizeObserver(scheduleLayout);for(const el of [$('stage'),document.body,...fitPanels.map(s=>s.panel),$('layers')])layoutObserver.observe(el);
-window.addEventListener('resize',scheduleLayout);document.fonts?.ready.then(scheduleLayout);refreshLayout();
+// Resize before the next paint, including Android WebView's visual viewport.
+// Only view framing changes; document pixels, layers and selection stay intact.
+let viewportSize={width:innerWidth,height:innerHeight};
+function resizeEditorViewport(){
+ const width=innerWidth,height=innerHeight;
+ const turned=(width>height)!==(viewportSize.width>viewportSize.height);
+ viewportSize={width,height};
+ if(turned&&typeof viewState!=='undefined'){
+  cancelCanvasGesture();viewState.zoom=1;viewState.panX=viewState.panY=0;
+ }
+ window.FragmentFloatingControls?.layout();
+ cancelAnimationFrame(layoutFrame);refreshLayout();
+ if(turned)render();
+}
+window.FragmentViewport={resize:resizeEditorViewport};
+const viewportObserver=new ResizeObserver(()=>{cancelAnimationFrame(layoutFrame);refreshLayout()});viewportObserver.observe($('stage'));
+window.addEventListener('resize',resizeEditorViewport);
+window.visualViewport?.addEventListener('resize',resizeEditorViewport);
+document.fonts?.ready.then(resizeEditorViewport);resizeEditorViewport();
+
+$('about').onclick=()=>$('aboutDialog').showModal();$('closeAbout').onclick=()=>$('aboutDialog').close();$('checkUpdates').addEventListener('click',()=>$('aboutDialog').close());
