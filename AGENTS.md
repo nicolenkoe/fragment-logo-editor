@@ -19,3 +19,5 @@ User-facing tutorial videos must be actual recordings of the current editor UI w
 The public root/index.html is the welcome page. Open editor.html (or click «Редактировать в браузере») for editor flows and layout checks; Android starts editor.html directly.
 
 Panel preferences (2026-11-22): View cycles directly without a dialog. There are only two panel states, open and icon rail. Each state remembers its own independently dragged position; moving one must not change the other. Default docked collapse buttons stay at the same location. Landscape Android hides system bars; portrait restores them.
+
+Session/layout preferences (1.3.16): Folding, rotation, View changes and process recreation must preserve the complete working document, selected layers and undo/redo. Persist image data and metadata transactionally, and protect the previous valid backup. Each of phone portrait, phone landscape, expanded portrait and expanded landscape has independent saved panel positions for both open and rail states. Untouched contexts dock at opposite edges. Multiple selected layers can be automatically split independently in one undo step; preview counts must match applied parts.

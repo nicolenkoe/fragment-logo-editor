@@ -11,3 +11,9 @@ Screenshots and video are stored with the release checks. Android APK resources 
 ## 1.3.15
 
 Adds orientation-specific native system bar control and independent saved positions for open panels and icon rails. A pointer-driven browser regression confirms separately dragging both states, moving the open state again without changing the rail, and restoring both after reload. Landscape immersive/portrait restoration is validated separately on the Pixel 6 / Android 15 emulator.
+
+## 1.3.16
+
+Four independent layout profiles now keep open/rail module positions separately. Browser checks cover edge defaults, moving both modules in both states in all four contexts, profile restoration, reload and virtual keyboard resizing. Automatic split supports multiple selected sources, preserving affine/style and unselected layers, with one undo checkpoint and exact preview/application counts. Browser session regression restores image pixels, groups, editable curved text, selection and undo/redo after reload. Resize/View transitions preserve the same document signature. Full layout, panel-position and interaction checks pass. Android handles smallest-screen, screen-layout and density changes without recreating the WebView; full document autosave also restores a fresh process. Native Pixel 6/API 35 verification is reported in the release evidence; expanded-screen dimensions are emulated, not a physical Fold.
+
+Upgrade note: versions through 1.3.15 did not persist the working session. Save a project file before installing 1.3.16 over an already running older version.

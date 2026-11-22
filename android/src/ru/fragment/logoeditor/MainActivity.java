@@ -23,6 +23,8 @@ public class MainActivity extends Activity {
  private volatile long previewGeneration;
  private float previewLeft=.08f,previewTop=.2f,previewRight=.92f,previewBottom=.9f;
  public class ViewportBridge {
+  @JavascriptInterface public String layoutProfile(){android.content.res.Configuration c=getResources().getConfiguration();return(c.smallestScreenWidthDp>=600?"expanded":"phone")+"-"+(c.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE?"landscape":"portrait");}
+
   @JavascriptInterface public void preview(final String data){
    if(data==null||!data.startsWith("data:image/png;base64,")||data.length()>8000000)return;
    final long generation=++previewGeneration;
@@ -80,7 +82,7 @@ public class MainActivity extends Activity {
     catch(Exception error){chooser=null;android.util.Log.w("Fragment","Cannot open file chooser",error);Toast.makeText(MainActivity.this,"Не удалось открыть выбор файла",Toast.LENGTH_SHORT).show();return false;}
    }
   });
-  if(state!=null)web.restoreState(state);else web.loadUrl("file:///android_asset/www/editor.html");
+  if(state==null||web.restoreState(state)==null)web.loadUrl("file:///android_asset/www/editor.html");
  }
  public class UpdateBridge {
   @JavascriptInterface public String getVersion(){return updates.settings();}
@@ -109,8 +111,9 @@ public class MainActivity extends Activity {
  }
  @Override public void onWindowFocusChanged(boolean hasFocus){super.onWindowFocusChanged(hasFocus);if(hasFocus)updateSystemBars();}
  @Override public void onConfigurationChanged(android.content.res.Configuration configuration){
-  super.onConfigurationChanged(configuration);updateSystemBars();if(web!=null){web.requestLayout();web.invalidate();}
+  super.onConfigurationChanged(configuration);updateSystemBars();if(web!=null){web.requestLayout();web.invalidate();web.post(new Runnable(){public void run(){web.evaluateJavascript("window.FragmentLayoutProfiles&&window.FragmentLayoutProfiles.refresh()",null);}});}
  }
+ @Override protected void onPause(){if(web!=null)web.evaluateJavascript("window.FragmentSession&&window.FragmentSession.flush()",null);super.onPause();}
  @Override protected void onResume(){super.onResume();updateSystemBars();if(updates!=null)updates.check(false);}
  public class FileBridge {
   @JavascriptInterface public String imageAsset(String input){
@@ -131,6 +134,6 @@ public class MainActivity extends Activity {
   if(request==SAVE_FILE){final byte[] bytes=pendingFile;pendingFile=null;if(result==RESULT_OK&&data!=null&&data.getData()!=null&&bytes!=null){final Uri uri=data.getData();new Thread(new Runnable(){public void run(){try{OutputStream output=getContentResolver().openOutputStream(uri);if(output==null)throw new java.io.IOException();try{output.write(bytes);}finally{output.close();}runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Файл сохранён",Toast.LENGTH_SHORT).show();}});}catch(Exception error){runOnUiThread(new Runnable(){public void run(){Toast.makeText(MainActivity.this,"Не удалось сохранить файл",Toast.LENGTH_LONG).show();}});}}}).start();}}
  }
  @Override public void onBackPressed(){if(web.canGoBack())web.goBack();else super.onBackPressed();}
- @Override protected void onSaveInstanceState(Bundle state){web.saveState(state);super.onSaveInstanceState(state);}
+ @Override protected void onSaveInstanceState(Bundle state){web.evaluateJavascript("window.FragmentSession&&window.FragmentSession.flush()",null);web.saveState(state);super.onSaveInstanceState(state);}
  @Override protected void onDestroy(){if(chooser!=null)chooser.onReceiveValue(null);previewDecoder.shutdownNow();web.removeJavascriptInterface("AndroidViewport");web.removeJavascriptInterface("AndroidFiles");web.removeJavascriptInterface("AndroidUpdates");web.destroy();super.onDestroy();}
 }
