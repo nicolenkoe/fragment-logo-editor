@@ -1,9 +1,0 @@
-{
-  "version": "1.19",
-  "code": 20,
-  "sha256": "dc235fe3a8e4a79fd589231d70f29ca1125d6daea5a2cd49baba6468564035b8",
-  "sizeBytes": 1147982,
-  "signer": "62acbeea2a4cef8bf11cec848b81038c76d4778a7e55192c1cbc694afa83f86c",
-  "web": "passed",
-  "deviceVerification": "pending: install, native app launch, Android browser intent bridge"
-}

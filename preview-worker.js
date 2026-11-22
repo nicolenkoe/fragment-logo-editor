@@ -1,2 +1,0 @@
-importScripts('segment.js?v=release-1316');
-onmessage=e=>{try{const {token,image,options,jobs}=e.data;if(jobs){const results=jobs.map(item=>segmentObjects(item.image,item.options));postMessage({token,results},results.map(r=>r.labels.buffer))}else{const result=segmentObjects(image,options);postMessage({token,result},[result.labels.buffer])}}catch(error){postMessage({token:e.data.token,error:error.message})}};

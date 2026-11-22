@@ -1,8 +1,0 @@
-{
-  "CamaraD-downloads": "https://nicolenkoe.github.io/CamaraD-downloads/releases.json",
-  "enduro-club-downloads": "https://nicolenkoe.github.io/enduro-club-downloads/releases.json",
-  "fragment-logo-editor": "https://nicolenkoe.github.io/fragment-logo-editor/release-catalog.js",
-  "hvost-pod-kontrolem": "https://nicolenkoe.github.io/hvost-pod-kontrolem-downloads/release.json",
-  "screen-recorder-downloads": "https://api.github.com/repos/nicolenkoe/screen-recorder-downloads/releases?per_page=100",
-  "my-projects": "https://nicolenkoe.github.io/fragment-logo-editor/my-projects/releases.json"
-}

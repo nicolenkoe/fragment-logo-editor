@@ -1,7 +1,0 @@
-(async()=>{try{
- const count=document.getElementById('splitResult'),colorCount=document.getElementById('colorResult');const sync=()=>{colorCount.textContent=count.textContent.replace(/^Объектов:/,'Частей:');document.getElementById('partsResult').textContent=colorCount.textContent;if(typeof scheduleLayout==='function')scheduleLayout()};new MutationObserver(sync).observe(count,{childList:true,characterData:true,subtree:true});sync();
- const input=document.getElementById('colorSensitivity');input.oninput=()=>{document.getElementById('colorSensitivityValue').textContent=input.value;if(typeof scheduleSplitPreview==='function')scheduleSplitPreview();else document.getElementById('backgroundTolerance').dispatchEvent(new Event('input',{bubbles:true}))};
- const image=await loadImg('examples/color-parts/complex.svg');applySource(image,'Тест: два ползунка, 16 деталей',false);setMode('select');
- document.getElementById('splitTolerance').value='0';document.getElementById('colorSensitivity').value='0';document.getElementById('colorSensitivity').dispatchEvent(new Event('input',{bubbles:true}));document.getElementById('backgroundTolerance').value='2';document.getElementById('splitTolerance').dispatchEvent(new Event('input',{bubbles:true}));document.getElementById('backgroundTolerance').dispatchEvent(new Event('input',{bubbles:true}));
- toast('Первый ползунок — по фону, второй — по цветам. Начните с минимума: один объект.');
- }catch(e){toast('Не удалось открыть тестовый пример: '+e.message)}})();
