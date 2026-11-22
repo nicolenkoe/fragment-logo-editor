@@ -11,3 +11,5 @@ Browser layout checks passed at 1440×900, 1280×720, 1024×768, 390×844, 375×
 Android release validation is recorded separately in the public release checks and GitHub Actions artifact; browser checks alone do not establish native behavior.
 
 Additional browser checks: 32 layers reachable across pagination in all three modes at 866×364, 390×844 and 568×260; View and rename dialogs remain inside the viewport. Short voiced demonstration was inspected at every action; MP4 fully decodes without errors/black frames, peak −1.7 dB, and browser playback/seek/Russian cues passed.
+
+Android uncovered a landscape keyboard reducing the viewport to 866×127. The rename modal now hides occluded background modules at heights below 200 pixels; panel state and saved normalized positions are retained. A real-browser regression at that exact height verifies dialog bounds and restores the same module positions after returning to 866×364.

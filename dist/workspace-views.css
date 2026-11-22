@@ -12,3 +12,7 @@ body[data-workspace-view] aside>.tabs button{font-size:11px}.project-primary-act
 @media(min-height:340px){body[data-workspace-view] aside .auto-split-module label{font-size:10px}}
 body[data-workspace-view] .tools-panel .hint{display:none}
 @media(max-height:300px){body[data-workspace-view] aside.tools-panel,body[data-workspace-view] aside.inspector-panel{padding:4px;gap:2px}body[data-workspace-view] .module-heading{flex-basis:24px}body[data-workspace-view] .module-grip{min-height:24px}body[data-workspace-view] .module-collapse{height:24px!important;flex-basis:24px}body[data-workspace-view] aside>.tabs button{padding:3px 1px;font-size:10px}body[data-workspace-view] aside label{font-size:10px;margin:2px 0}body[data-workspace-view] aside input[type=text],body[data-workspace-view] aside select{padding:3px}body[data-workspace-view] aside .inspector-footer{padding-top:2px}body[data-workspace-view] aside .inspector-footer label{font-size:9px}}
+
+/* A landscape keyboard can leave less than 200 CSS pixels. Keep the active
+   modal clear; restore both modules unchanged when the keyboard closes. */
+@media(max-height:200px){body:has(.rename-dialog[open]) aside.tools-panel,body:has(.rename-dialog[open]) aside.inspector-panel{display:none!important}}
