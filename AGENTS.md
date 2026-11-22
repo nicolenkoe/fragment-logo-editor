@@ -1,8 +1,8 @@
 # Editor review requirements
 
-Keep the editor in one viewport. Never add page or panel scrolling as the default layout, or hide overflowing controls without another way to reach them. Fit the canvas while preserving its aspect ratio; paginate long layer lists and settings.
+Keep the editor in one viewport. Never add page scrolling or hide overflowing controls without another way to reach them. The user explicitly requested thin vertical scrollbars and touch scrolling inside both side panels on 2026-11-22; this overrides the earlier panel-pagination preference. Fit the canvas while preserving its aspect ratio; use the available full height and scroll long layer lists and settings inside the panels.
 
-Before finishing every UI change, check for horizontal and vertical scrollbars and unreachable content. Cover 1440×900, 1280×720, 1024×768, 390×844, 375×667, and 844×390. Check the default image, selected/rotated object, many layers, all tool/property tabs, open split settings, and mobile drawers. `window.checkEditorLayout()` must return `ok: true` for each visible state. Verify next/previous pages expose every layer and setting, and controls remain usable with keyboard and pointer.
+Before finishing every UI change, check for horizontal and vertical scrollbars and unreachable content. Cover 1440×900, 1280×720, 1024×768, 390×844, 375×667, and 844×390. Check the default image, selected/rotated object, many layers, all tool/property tabs, open split settings, and mobile drawers. `window.checkEditorLayout()` must return `ok: true` for each visible state. Verify vertical panel scrolling exposes every layer and setting, and controls remain usable with keyboard and pointer.
 
 Use the supported browser QA path from the Sites skill. When browser tooling is unavailable, run the available logic checks, explicitly report that browser layout verification was unavailable, and do not claim the viewport checks passed.
 
