@@ -28,7 +28,7 @@ function pageControls(state){const {panel,content,pager,prev,next,text}=state;if
 }
 function fitCanvas(){const stage=$('stage'),style=getComputedStyle(stage);const width=Math.max(1,stage.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)),height=Math.max(1,stage.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom));const fit=Math.min(width/canvas.width,height/canvas.height);canvas.style.width=(canvas.width*fit)+'px';canvas.style.height=(canvas.height*fit)+'px';positionRotationHandle();if(typeof refreshSelectionHandles==='function')refreshSelectionHandles();if(typeof refreshObjectHandles==='function')refreshObjectHandles()}
 function positionRotationHandle(){const handle=$('rotateHandle'),l=selectionTransformTarget();if(!l||l.visible===false||mode!=='move'){handle.hidden=true;return}
- const cr=canvas.getBoundingClientRect(),sr=$('stage').getBoundingClientRect(),ratio=cr.width/canvas.width,m=layerLinear(l),top=linearPoint(m,0,-l.img.height/2),normal=Math.hypot(m.a,m.b);
+ const cr=canvas.getBoundingClientRect(),sr=$('stage').getBoundingClientRect(),ratio=cr.width/canvas.width,m=layerLinear(l),g=typeof objectHandleGeometry==='function'?objectHandleGeometry(l,ratio):null,top=linearPoint(m,0,-(g?.halfH??l.img.height/2)),normal=Math.hypot(m.a,m.b);
  const x=cr.left-sr.left+(l.x+top.x)*ratio+30*m.b/normal,y=cr.top-sr.top+(l.y+top.y)*ratio-30*m.a/normal;
  handle.hidden=false;handle.style.left=(Math.min(Math.max(16,x),sr.width-16)-14)+'px';handle.style.top=(Math.min(Math.max(16,y),sr.height-16)-14)+'px';
 }

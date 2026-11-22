@@ -9,4 +9,5 @@ function metadata(s){if(s.filename!==undefined)$('filename').textContent=s.filen
 const undo=$('undo').onclick;$('undo').onclick=()=>{if(!history.length)return;const state=history[history.length-1];redoHistory.push(snapshot());if(redoHistory.length>12)redoHistory.shift();undo();metadata(state);render();sync()};
 $('redo').onclick=()=>{if(!redoHistory.length)return;history.push(snapshot());if(history.length>12)history.shift();const state=redoHistory.pop();base=state.base;layers=state.layers;active=state.active;selected=new Set(state.selected||[]);pending=state.pending;selection=null;splitSession=null;metadata(state);if(typeof clearSplitPreview==='function')clearSplitPreview();ui();sync()};
 const keyboard=document.onkeydown;document.onkeydown=e=>{if(!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&(e.ctrlKey||e.metaKey)&&['z','y'].includes(e.key.toLowerCase())){e.preventDefault();$(e.key.toLowerCase()==='y'||e.shiftKey?'redo':'undo').click();return}keyboard?.(e)};sync();
+window.FragmentHistory={redoStates:()=>redoHistory,restoreRedo:states=>{redoHistory=states;sync()}};
 })();
