@@ -2,6 +2,27 @@
   "schema": 1,
   "releases": [
     {
+      "version": "1.3.13",
+      "versionCode": 21,
+      "channel": "experimental",
+      "date": "2026-11-22",
+      "publishedAt": "2026-11-22T01:58:46Z",
+      "notes": [
+        "Кнопка «Вид» справа от «Слои»: узкие панели, плавающие панели и плитки слоёв.",
+        "Три состояния панелей: открытая, значки и маленький шеврон.",
+        "Перемещение целых модулей удержанием заголовка; выбранный вид и положение запоминаются.",
+        "Сохранены названия и переименование объектов; переключение вида не меняет изображение, слои и выделение."
+      ],
+      "apk": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.13/fragment-editor-1.3.13.apk",
+      "source": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.13/fragment-source-1.3.13.zip",
+      "verification": "https://raw.githubusercontent.com/nicolenkoe/fragment-logo-editor/gh-pages/downloads/1.3.13/update.json",
+      "packageName": "ru.fragment.logoeditor",
+      "minSdk": 23,
+      "abis": [
+        "universal"
+      ]
+    },
+    {
       "version": "1.3.12",
       "versionCode": 20,
       "channel": "experimental",

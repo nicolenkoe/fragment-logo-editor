@@ -33,7 +33,7 @@ function positionRotationHandle(){const handle=$('rotateHandle'),l=selectionTran
  handle.hidden=false;handle.style.left=(Math.min(Math.max(16,x),sr.width-16)-14)+'px';handle.style.top=(Math.min(Math.max(16,y),sr.height-16)-14)+'px';
 }
 function refreshLayout(){for(const panel of fitPanels)pageControls(panel);
- if($('layersPanel').getClientRects().length){const rows=[...$('layers').children],height=$('layers').clientHeight,rowHeight=window.innerHeight<=560?35:41,pageSize=Math.max(1,Math.floor(height/rowHeight)),pages=Math.max(1,Math.ceil(rows.length/pageSize));layerPageIndex=Math.max(0,Math.min(layerPageIndex,pages-1));rows.forEach((row,i)=>row.hidden=Math.floor(i/pageSize)!==layerPageIndex);$('layerPage').textContent=(layerPageIndex+1)+' / '+pages;$('prevLayers').disabled=layerPageIndex===0;$('nextLayers').disabled=layerPageIndex===pages-1;}
+ if($('layersPanel').getClientRects().length&&window.FragmentWorkspace){FragmentWorkspace.paginateLayers()}else if($('layersPanel').getClientRects().length){const rows=[...$('layers').children],height=$('layers').clientHeight,rowHeight=window.innerHeight<=560?35:41,pageSize=window.FragmentWorkspace?.layerPageSize(height)??Math.max(1,Math.floor(height/rowHeight)),pages=Math.max(1,Math.ceil(rows.length/pageSize));layerPageIndex=Math.max(0,Math.min(layerPageIndex,pages-1));rows.forEach((row,i)=>row.hidden=Math.floor(i/pageSize)!==layerPageIndex);$('layerPage').textContent=(layerPageIndex+1)+' / '+pages;$('prevLayers').disabled=layerPageIndex===0;$('nextLayers').disabled=layerPageIndex===pages-1;}
  fitCanvas();
 }
 function scheduleLayout(){cancelAnimationFrame(layoutFrame);layoutFrame=requestAnimationFrame(refreshLayout)}
@@ -47,9 +47,9 @@ $('rotateHandle').onkeydown=e=>{const l=selectionTransformTarget();if(!l||!['Arr
 // A review hook: check actual content bounds instead of only hiding scrollbars.
 window.checkEditorLayout=function(){const root=document.documentElement,issues=[];
  if(root.scrollWidth>root.clientWidth+1||root.scrollHeight>root.clientHeight+1)issues.push('Страница выходит за размер окна');
- for(const el of [document.body,$('stage'),...document.querySelectorAll('.fit-items,#layers')]){if(!el.getClientRects().length)continue;if(el===$('stage')&&typeof viewState!=='undefined')continue;if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1)issues.push(el.id||el.className||el.tagName)}
+ for(const el of [document.body,$('stage'),...document.querySelectorAll('.fit-items,#layers,.module-rail,.rail-items')]){if(!el.getClientRects().length)continue;if(el===$('stage')&&typeof viewState!=='undefined')continue;if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1)issues.push(el.id||el.className||el.tagName)}
  const r=canvas.getBoundingClientRect(),s=$('stage').getBoundingClientRect();if((typeof viewState==='undefined'||viewState.zoom===1&&viewState.panX===0&&viewState.panY===0)&&(r.left<s.left-1||r.top<s.top-1||r.right>s.right+1||r.bottom>s.bottom+1))issues.push('Холст выходит за рабочую область');
- for(const el of document.querySelectorAll('.update-dialog[open],.palette-dialog[open],.export-dialog[open],.about-dialog[open]')){const b=el.getBoundingClientRect();if(b.left<0||b.top<0||b.right>window.innerWidth||b.bottom>window.innerHeight||el.scrollHeight>el.clientHeight+1)issues.push('Диалог выходит за размер экрана')}
+ for(const el of document.querySelectorAll('.update-dialog[open],.palette-dialog[open],.export-dialog[open],.about-dialog[open],.workspace-menu[open],.rename-dialog[open]')){const b=el.getBoundingClientRect();if(b.left<0||b.top<0||b.right>window.innerWidth||b.bottom>window.innerHeight||el.scrollHeight>el.clientHeight+1)issues.push('Диалог выходит за размер экрана')}
  return{ok:issues.length===0,viewport:[window.innerWidth,window.innerHeight],issues};
 };
 const layoutObserver=new ResizeObserver(scheduleLayout);for(const el of [$('stage'),document.body,...fitPanels.map(s=>s.panel),$('layers')])layoutObserver.observe(el);
@@ -64,6 +64,7 @@ function resizeEditorViewport(){
   cancelCanvasGesture();viewState.zoom=1;viewState.panX=viewState.panY=0;
  }
  window.FragmentFloatingControls?.layout();
+ window.FragmentWorkspace?.layout();
  cancelAnimationFrame(layoutFrame);refreshLayout();
  if(turned)render();
 }

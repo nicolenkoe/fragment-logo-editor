@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-const ids=['toggleTools','toggleInspector','undo','redo','export','resetView'],controls=ids.map(id=>document.getElementById(id)).filter(Boolean),parents=[document.querySelector('header'),document.querySelector('.mobile-toolbar')],fields=['position','left','top','width','height','zIndex','touchAction','userSelect'];
+const ids=['toggleTools','toggleInspector','toggleView','undo','redo','export','resetView'],controls=ids.map(id=>document.getElementById(id)).filter(Boolean),parents=[document.querySelector('header'),document.querySelector('.mobile-toolbar')],fields=['position','left','top','width','height','zIndex','touchAction','userSelect'];
 const original=new Map(controls.map(el=>[el,Object.fromEntries(fields.map(k=>[k,el.style[k]]))])),parentOriginal=new Map(parents.map(el=>[el,{width:el.style.width,height:el.style.height}]));
 const media=matchMedia('(orientation:landscape) and (max-height:500px) and (max-width:1100px)'),storageKey='fragment-floating-controls-v1';let config={enabled:true,positions:{}};
 try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved&&typeof saved==='object'){config.enabled=saved.enabled!==false;for(const id of ids){const p=saved.positions?.[id];if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1)config.positions[id]={x:p.x,y:p.y}}}}catch{}
