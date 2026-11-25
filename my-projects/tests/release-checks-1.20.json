@@ -1,0 +1,8 @@
+{
+  "version": "1.20",
+  "browserVersionClick": "passed personal/public: update, current, error, stale source, double click, no downloads",
+  "regression": "three personal modes, public no catalog/Codex/repository links, responsive widths",
+  "native": "compiled and signed; ClickableSpan plus fresh resolver; installed PackageInfo comparison; self uses existing updater",
+  "devicePending": "Android link tapping and package/update dialogs require phone confirmation",
+  "publicationRule": "saved in project AGENTS.md"
+}

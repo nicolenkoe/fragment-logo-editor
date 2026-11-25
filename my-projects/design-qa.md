@@ -6,3 +6,5 @@ Web: user-supplied descriptions shared through descriptions.js in public and per
 Browser checks: all three personal modes at four widths, public at five widths; versions and URLs, shared descriptions, clipboard and links; no catalog/Codex/repository links in public. Actual APK click verified with cached 0.64 resolving 0.67; outdated/error responses and repeat taps tested. No JS errors.
 
 All five other project APKs downloaded and Android package/version manifests verified. Published SHA-256 compared where provided. Same signing certificate retained for hub. Freshness rules documented in RELEASE_RULES.md and linked from AGENTS.md.
+
+Version 1.20: version labels now interactive (native ClickableSpan, web buttons). Existing layout retained. Web click tests passed for fresh/current/error/stale responses and duplicate taps without downloads. Native compiled/signed; physical link taps and installed package queries not device-tested. Auto-publication preference saved in AGENTS.md.
